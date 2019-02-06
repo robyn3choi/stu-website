@@ -29,6 +29,7 @@ class SongList extends Component {
       const firstSong = this.state.songs[0];
       return (
         <div>
+          <h1>test</h1>
           <h1>{RichText.asText(firstSong.data.title)}</h1>
           <img alt="cover" src={firstSong.data.cover_art.url} />
         </div>
