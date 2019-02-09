@@ -11,6 +11,10 @@ class TotalSpotifyFollowers extends Component {
   }
 
   componentDidMount() {
+    if (!process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development') {
+      return;
+    }
+    
     fetch('http://stu-website-api-env.4cca57prbj.us-west-2.elasticbeanstalk.com/spotify', {
       method: 'get',
       headers: {
