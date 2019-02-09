@@ -3,7 +3,7 @@ import './App.css';
 import TotalYoutubeViews from './ScrollingNumbers/TotalYoutubeViews';
 import TotalSpotifyFollowers from './ScrollingNumbers/TotalSpotifyFollowers';
 import RamenBowlsConsumed from './ScrollingNumbers/RamenBowlsConsumed';
-import SongList from './Songs/SongList';
+import MusicList from './Music/MusicList';
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
         <TotalYoutubeViews />
         <TotalSpotifyFollowers />
         <RamenBowlsConsumed />
-        <SongList />
+        <MusicList />
       </div>
     );
   }

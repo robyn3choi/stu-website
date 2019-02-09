@@ -11,7 +11,7 @@ class TotalSpotifyFollowers extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/spotify', {
+    fetch('http://stu-website-api-env.4cca57prbj.us-west-2.elasticbeanstalk.com/spotify', {
       method: 'get',
       headers: {
         'Content-Type': 'application/json'
