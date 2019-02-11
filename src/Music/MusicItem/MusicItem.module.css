@@ -1,0 +1,47 @@
+.music_item {
+    position: relative;
+    margin: 10px;
+    height: 256px;
+    width: 256px;
+    text-align: center;
+}
+
+.overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,1);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.overlay:hover {
+    opacity: 0.8;
+}
+
+.headings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+}
+
+h4 {
+    color: white;
+}
+
+h5 {
+    color: white;
+}
+
+.icons {
+    margin: 4px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+}

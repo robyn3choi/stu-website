@@ -1,0 +1,6 @@
+.icon {
+    margin: 6px;
+    width: 32px;
+    opacity: 0;
+    transition: opacity 1s;
+}

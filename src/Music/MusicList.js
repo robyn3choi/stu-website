@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Prismic from 'prismic-javascript';	
-import MusicItem from './MusicItem';
+import MusicItem from './MusicItem/MusicItem';
+import styles from './MusicList.module.css';
 
 class MusicList extends Component {
-
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +44,7 @@ class MusicList extends Component {
         />
       });
       return(
-        <div id='music-list'>{musicItemArray}</div>
+        <div id={styles.music_list}>{musicItemArray}</div>
       );
     }
     return <h1>Loading...</h1>;
