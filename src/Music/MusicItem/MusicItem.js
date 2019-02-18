@@ -26,9 +26,6 @@ class MusicItem extends Component {
     if (this.props.soundcloud) {
       icons.push(<MusicItemIcon className={null} url={this.props.soundcloud} platform='soundcloud' key='3' />);
     }
-    if (this.props.apple) {
-      icons.push(<MusicItemIcon className={null} url={this.props.apple} platform='apple' key='4' />);
-    }
     this.setState({icons: icons});
   }
 
@@ -46,7 +43,6 @@ class MusicItem extends Component {
     const nextIconIndex = this.state.iconIndex + 1;
 
     if (nextIconIndex === icons.length) {
-      console.log("stop");
       clearInterval(this.state.intervalId);
       this.setState({intervalId: null, iconIndex: 0});
     }
@@ -71,19 +67,10 @@ class MusicItem extends Component {
           <div className={styles.overlay} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
             <div className={styles.headings}>
               <h4>{this.props.title}</h4>
-              <h5>{this.props.artist}</h5>
+              <h5>{this.props.alias}</h5>
             </div>
             <div className={styles.icons}>
             {this.state.icons}
-              {/* {this.props.spotify ? <MusicItemIcon url={this.props.spotify} platform='spotify' /> : null}
-              {this.props.youtube ? <MusicItemIcon url={this.props.youtube} platform='youtube' /> : null}
-              {this.props.soundcloud ? <MusicItemIcon url={this.props.soundcloud} platform='soundcloud' /> : null}
-              {this.props.apple ? <MusicItemIcon url={this.props.apple} platform='apple' /> : null} */}
-
-              {/* {this.props.spotify ? <a href={this.props.spotify} target="_blank" rel="noopener noreferrer"><img alt='spotify' src={require('../images/spotify-icon.png')} /></a> : null}
-              {this.props.youtube ? <a href={this.props.youtube} target="_blank" rel="noopener noreferrer"><img alt='youtube' src={require('../images/spotify-icon.png')} /></a> : null}
-              {this.props.soundcloud ? <a href={this.props.soundcloud} target="_blank" rel="noopener noreferrer"><img alt='soundcloud' src={require('../images/spotify-icon.png')} /></a> : null}
-              {this.props.apple ? <a href={this.props.apple} target="_blank" rel="noopener noreferrer"><img alt='apple' src={require('../images/spotify-icon.png')} /></a> : null} */}
             </div>
           </div>
       </div>
