@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Prismic from 'prismic-javascript';	
 import MusicItem from './MusicItem/MusicItem';
 import AliasFilterButtonList from './AliasFilterButtonList';
 import styles from './MusicList.module.css';
@@ -9,25 +8,16 @@ class MusicList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allMusicItems: [],
+      //allMusicItems: [],
       displayedMusicItems: [],
       selectedAlias: 'All'
     }
   }
-  
-  componentDidMount() {
-    // TODO: hide link and change to stu's actual prismic
-    const apiEndpoint = 'https://stu-website.prismic.io/api/v2';
-    Prismic.api(apiEndpoint)
-    .then(api => {
-      api.query(Prismic.Predicates.at('document.type', 'music_item'),
-        {orderings : '[my.music_item.release_date desc]'})
-      .then(response => {
-        if (response) {
-          this.setState({allMusicItems: response.results, displayedMusicItems: response.results});
-        }
-      });
-    });
+
+  componentDidUpdate(prevProps) {
+    if (this.props.allMusicItems !== prevProps.allMusicItems) {
+      this.setState({displayedMusicItems: this.props.allMusicItems});
+    }
   }
 
   createMusicList = (musicItems) => {
@@ -50,10 +40,10 @@ class MusicList extends Component {
     this.setState({selectedAlias: alias});
     
     if (alias === 'All') {
-      this.setState({displayedMusicItems: this.state.allMusicItems});
+      this.setState({displayedMusicItems: this.props.allMusicItems});
     }
     else {
-      const displayedMusicItems = this.state.allMusicItems.filter(musicItem => musicItem.data.alias === alias);
+      const displayedMusicItems = this.props.allMusicItems.filter(musicItem => musicItem.data.alias === alias);
       this.setState({displayedMusicItems: displayedMusicItems});
     }
   }
@@ -61,12 +51,12 @@ class MusicList extends Component {
   render() {
     const displayedMusicItems = this.state.displayedMusicItems;
 
-    if (displayedMusicItems.length > 0) {
+    if (displayedMusicItems && displayedMusicItems.length > 0) {
       const musicItemArray = this.createMusicList(displayedMusicItems);
       return(
         <div>
           <AliasFilterButtonList 
-            musicItems={this.state.allMusicItems} 
+            musicItems={this.props.allMusicItems} 
             filterByAlias={this.filterByAlias}
             selectedAlias={this.state.selectedAlias}
           />
