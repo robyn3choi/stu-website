@@ -8,15 +8,8 @@ class MusicList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //allMusicItems: [],
-      displayedMusicItems: [],
+      displayedMusicItems: this.props.allMusicItems,
       selectedAlias: 'All'
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.allMusicItems !== prevProps.allMusicItems) {
-      this.setState({displayedMusicItems: this.props.allMusicItems});
     }
   }
 
