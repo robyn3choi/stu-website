@@ -1,0 +1,39 @@
+@import '../../Variables.scss';
+
+.alias-filter {
+    background-color: transparent;
+    padding: 8px;
+    color: $almost-white;
+    margin: 5px;
+    border-style: solid;
+    border-color: $almost-white;
+    border-width: 1px;
+    transition: 1s cubic-bezier(0,0.5,0,1);
+    font-size: 1em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.alias-filter:hover {
+    transform:  translate(4px, -4px);
+    box-shadow: -3px 3px $almost-white;
+}
+
+.alias-filter__selected:hover {
+    box-shadow: -3px 3px 2px 2px  $almost-black;
+    transform:  translate(2px, -2px);
+    
+}
+
+.alias-filter:active {
+    transition-duration: 0.2s;
+    transform:  translate(0, 0);
+    box-shadow: none;
+}
+
+.alias-filter__selected {
+    color: $background;
+    background-color: $almost-white;
+    transition-duration: 0.2s;
+    transform:  translate(2px, -2px);
+    box-shadow: -3px 3px 2px 2px  $almost-black;
+}

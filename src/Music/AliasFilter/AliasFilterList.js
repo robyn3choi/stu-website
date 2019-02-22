@@ -1,13 +1,13 @@
 import React from 'react';
-import AliasFilterButton from './AliasFilterButton';
+import AliasFilter from './AliasFilter';
 
-const AliasFilterButtonList = (props) => {
+const AliasFilterList = (props) => {
 
   const aliases = props.musicItems.map(musicItem => musicItem.data.alias);
   const uniqueAliases = aliases.filter((alias, i, array) => array.indexOf(alias) === i);
-  uniqueAliases.push('All');
+  uniqueAliases.unshift(null);
   const buttons = uniqueAliases.map((alias, i) => 
-    <AliasFilterButton 
+    <AliasFilter 
       key={i}
       isSelected={props.selectedAlias === alias ? true : false} 
       alias={alias} 
@@ -16,8 +16,8 @@ const AliasFilterButtonList = (props) => {
   );
 
   return (
-    <div>{buttons}</div>
+    <div className='alias-filter-list'>{buttons}</div>
   );
 }
 
-export default AliasFilterButtonList;
+export default AliasFilterList;

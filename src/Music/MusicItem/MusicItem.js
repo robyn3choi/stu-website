@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MusicItemIcon from '../MusicItemIcon/MusicItemIcon'
-import styles from './MusicItem.module.css';
+import './MusicItem.css';
 
 const ICON_FADEIN_INTERVAL = 120;
 
@@ -20,11 +20,11 @@ class MusicItem extends Component {
     if (this.props.spotify) {
       icons.push(<MusicItemIcon className={null} url={this.props.spotify} platform='spotify' key='1' />);
     }
-    if (this.props.youtube) {
-      icons.push(<MusicItemIcon className={null} url={this.props.youtube} platform='youtube' key='2' />);
-    }
     if (this.props.soundcloud) {
       icons.push(<MusicItemIcon className={null} url={this.props.soundcloud} platform='soundcloud' key='3' />);
+    }
+    if (this.props.youtube) {
+      icons.push(<MusicItemIcon className={null} url={this.props.youtube} platform='youtube' key='2' />);
     }
     this.setState({icons: icons});
   }
@@ -36,7 +36,7 @@ class MusicItem extends Component {
 
   fadeInNextIcon() {
     const icons = this.state.icons;
-    const iconWithShowClass = React.cloneElement(icons[this.state.iconIndex], {className: 'show'});
+    const iconWithShowClass = React.cloneElement(icons[this.state.iconIndex], {className: 'music-item__icon_show'});
     icons[this.state.iconIndex] = iconWithShowClass;
     this.setState({icons: icons});
 
@@ -62,15 +62,15 @@ class MusicItem extends Component {
 
   render() {
     return (
-      <div className={styles.music_item}>
+      <div className='music-item' data-groups={`["${this.props.alias}"]`}>
           <img alt={this.props.title} src={this.props.coverArt} />
-          <div className={styles.overlay} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-            <div className={styles.headings}>
-              <h4>{this.props.title}</h4>
-              <h5>{this.props.alias}</h5>
-            </div>
-            <div className={styles.icons}>
-            {this.state.icons}
+          <div className='music-item__overlay' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+            <div className='music-item__content'>
+              <h3>{this.props.title}</h3>
+              <h4>{this.props.alias}</h4>
+              <div className='music-item__icon-container'>
+                {this.state.icons}
+              </div>
             </div>
           </div>
       </div>

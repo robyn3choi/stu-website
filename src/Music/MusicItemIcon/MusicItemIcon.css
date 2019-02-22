@@ -1,6 +1,10 @@
-.icon {
+.music-item__icon {
     margin: 6px;
     width: 32px;
     opacity: 0;
     transition: opacity 1s;
+}
+
+.music-item__icon_show {
+    opacity: 1;
 }

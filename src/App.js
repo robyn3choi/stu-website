@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Prismic from 'prismic-javascript';	
-// import TotalYoutubeViews from './ScrollingNumbers/TotalYoutubeViews';
-// import TotalSpotifyFollowers from './ScrollingNumbers/TotalSpotifyFollowers';
-// import RamenBowlsConsumed from './ScrollingNumbers/RamenBowlsConsumed';
 import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom'
 import Home from './Home/Home';
-import MusicList from './Music/MusicList';
+import Music from './Music/Music';
 import About from './About/About'
 import Contact from './Contact/Contact'
 
@@ -19,6 +16,8 @@ class App extends Component {
       aboutParagraphs: [],
       contactEmail: ''
     }
+
+    this.musicSection = React.createRef();
   }
 
   componentDidMount() {
@@ -61,6 +60,10 @@ class App extends Component {
       });
   }
 
+  scrollToMusicSection() {
+    window.scrollTo({top:this.musicSection.current.offsetTop, behavior: 'smooth'})
+  }
+
   render() {
     const {aboutParagraphs, allMusicItems, contactEmail} = this.state;
     if (aboutParagraphs.length > 0 && allMusicItems.length > 0 && contactEmail.length > 0) {
@@ -72,7 +75,7 @@ class App extends Component {
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About</Link></li>
-                <li><Link to="/music">Music</Link></li>
+                <li><button onClick={() => this.scrollToMusicSection()}>Music</button></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
@@ -80,10 +83,11 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/about' render={props => <About {...props} paragraphs={aboutParagraphs} />} />
-              <Route path='/music' render={props => <MusicList {...props} allMusicItems={allMusicItems} />} />
+              {/* <Route path='/music' render={props => <MusicList {...props} allMusicItems={allMusicItems} />} /> */}
               <Route path='/contact' render={props => <Contact {...props} email={contactEmail} />} />
             </Switch>
 
+            <Music allMusicItems={allMusicItems} scrollRef={this.musicSection}/>
           </div>
         </Router>
       );

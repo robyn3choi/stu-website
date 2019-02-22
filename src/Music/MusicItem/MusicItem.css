@@ -1,13 +1,12 @@
-.music_item {
+.music-item {
     position: relative;
-    margin: 10px;
     height: 256px;
     width: 256px;
     text-align: center;
     transition: flex 0.5s;
 }
 
-.overlay {
+.music-item__overlay {
     display: block;
     position: absolute;
     top: 0;
@@ -19,11 +18,11 @@
     transition: opacity 0.3s;
 }
 
-.overlay:hover {
+.music-item__overlay:hover {
     opacity: 0.8;
 }
 
-.headings {
+.music-item__content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,18 +30,9 @@
     width: 220px;
 }
 
-h4 {
-    color: white;
-}
-
-h5 {
-    color: white;
-}
-
-.icons {
+.music-item__icon-container {
     margin: 4px;
-    position: absolute;
     display: flex;
     align-items: center;
-    bottom: 0;
+    justify-content: center;
 }

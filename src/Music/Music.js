@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import MusicItem from './MusicItem/MusicItem';
-import AliasFilterButtonList from './AliasFilterButtonList';
-import styles from './MusicList.module.css';
+import AliasFilterList from './AliasFilter/AliasFilterList';
+import MusicGrid from './MusicGrid/MusicGrid';
+import './Music.css';
 
-class MusicList extends Component {
+class Music extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      displayedMusicItems: this.props.allMusicItems,
-      selectedAlias: 'All'
-    }
+      selectedAlias: null
+    };
+    this.musicGrid = React.createRef();
   }
 
   createMusicList = (musicItems) => {
@@ -31,29 +32,21 @@ class MusicList extends Component {
 
   filterByAlias = (alias) => {
     this.setState({selectedAlias: alias});
-    
-    if (alias === 'All') {
-      this.setState({displayedMusicItems: this.props.allMusicItems});
-    }
-    else {
-      const displayedMusicItems = this.props.allMusicItems.filter(musicItem => musicItem.data.alias === alias);
-      this.setState({displayedMusicItems: displayedMusicItems});
-    }
+    this.musicGrid.current.filterByAlias(alias);
   }
 
   render() {
-    const displayedMusicItems = this.state.displayedMusicItems;
-
-    if (displayedMusicItems && displayedMusicItems.length > 0) {
-      const musicItemArray = this.createMusicList(displayedMusicItems);
+    if (this.props.allMusicItems.length > 0) {
+      const musicItemComponents = this.createMusicList(this.props.allMusicItems);
       return(
-        <div>
-          <AliasFilterButtonList 
+        <div className='music-section' ref={this.props.scrollRef}>
+          <h1 className='section-header'>Music</h1>
+          <AliasFilterList 
             musicItems={this.props.allMusicItems} 
             filterByAlias={this.filterByAlias}
             selectedAlias={this.state.selectedAlias}
           />
-          <div id={styles.music_list}>{musicItemArray}</div>
+          <MusicGrid musicItemComponents={musicItemComponents} ref={this.musicGrid}/>
         </div>
       );
     }
@@ -62,4 +55,4 @@ class MusicList extends Component {
   }
 }
 
-export default MusicList;
+export default Music;

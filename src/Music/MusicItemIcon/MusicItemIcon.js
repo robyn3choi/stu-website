@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './MusicItemIcon.module.css';
+import './MusicItemIcon.css';
 
 const MusicItemIcon = (props) => {
   return (
     <a href={props.url} target="_blank" rel="noopener noreferrer">
-      <img className={`${styles.icon} ${props.className}`} alt={props.platform} src={require(`./${props.platform}-icon.png`)} />
+      <img className={`music-item__icon ${props.className}`} alt={props.platform} src={require(`./${props.platform}-icon.png`)} />
     </a>
   )
 }

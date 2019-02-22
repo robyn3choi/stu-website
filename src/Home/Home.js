@@ -13,10 +13,8 @@ const particleParams = {
 }
 
 const Home = (props) => {
-  console.log(particleParams);
   return (
     <div>
-      <Particles params={particleParams} />
     </div>
   );
 }
