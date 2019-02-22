@@ -1,20 +1,13 @@
 import React from 'react';
-import Particles from 'react-particles-js';
-
-const particleParams = {
-  particles: {
-    number: {
-      value: 100
-    },
-    shape: {
-      type: 'triangle',
-    }
-  }
-}
+import Header from './Header/Header'
+import Music from '../Music/Music'
+import './Home.scss';
 
 const Home = (props) => {
   return (
-    <div>
+    <div className='home'>
+      <Header />
+      <Music allMusicItems={props.allMusicItems} scrollRef={props.scrollRef}/>
     </div>
   );
 }

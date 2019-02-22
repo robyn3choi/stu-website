@@ -39,7 +39,7 @@ class Music extends Component {
     if (this.props.allMusicItems.length > 0) {
       const musicItemComponents = this.createMusicList(this.props.allMusicItems);
       return(
-        <div className='music-section' ref={this.props.scrollRef}>
+        <section id='music' ref={this.props.scrollRef}>
           <h1 className='section-header'>Music</h1>
           <AliasFilterList 
             musicItems={this.props.allMusicItems} 
@@ -47,7 +47,7 @@ class Music extends Component {
             selectedAlias={this.state.selectedAlias}
           />
           <MusicGrid musicItemComponents={musicItemComponents} ref={this.musicGrid}/>
-        </div>
+        </section>
       );
     }
     

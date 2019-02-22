@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import Prismic from 'prismic-javascript';	
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import Home from './Home/Home';
-import Music from './Music/Music';
-import About from './About/About'
-import Contact from './Contact/Contact'
+import About from './About/About';
+import Contact from './Contact/Contact';
 
 class App extends Component {
 
@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("api call");
     const apiEndpoint = 'https://stu-website.prismic.io/api/v2';
     Prismic.api(apiEndpoint)
       .then(api => {
@@ -60,34 +59,28 @@ class App extends Component {
       });
   }
 
-  scrollToMusicSection() {
-    window.scrollTo({top:this.musicSection.current.offsetTop, behavior: 'smooth'})
-  }
-
   render() {
     const {aboutParagraphs, allMusicItems, contactEmail} = this.state;
     if (aboutParagraphs.length > 0 && allMusicItems.length > 0 && contactEmail.length > 0) {
       return (
         <Router>
-          <div>
+          <div className='app-container'>
           
-            <div>
+            <div className='nav'>
               <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About</Link></li>
-                <li><button onClick={() => this.scrollToMusicSection()}>Music</button></li>
+                <li><HashLink smooth to="/#music">Music</HashLink></li>
                 <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
 
             <Switch>
-              <Route exact path='/' component={Home} />
+              <Route exact path='/' render={props => <Home {...props} allMusicItems={allMusicItems} scrollRef={this.musicSection} />} />
               <Route path='/about' render={props => <About {...props} paragraphs={aboutParagraphs} />} />
-              {/* <Route path='/music' render={props => <MusicList {...props} allMusicItems={allMusicItems} />} /> */}
               <Route path='/contact' render={props => <Contact {...props} email={contactEmail} />} />
             </Switch>
-
-            <Music allMusicItems={allMusicItems} scrollRef={this.musicSection}/>
+            
           </div>
         </Router>
       );
