@@ -1,0 +1,10 @@
+@import './../Variables.scss';
+
+#music {
+    background: radial-gradient(circle, $background 20%, black 100%);
+    padding: 60px 0;
+}
+
+.alias-filter-list {
+    text-align: center;
+}

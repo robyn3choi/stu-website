@@ -7,7 +7,7 @@ const Home = (props) => {
   return (
     <div className='home'>
       <Header />
-      <Music allMusicItems={props.allMusicItems} scrollRef={props.scrollRef}/>
+      {/* <Music allMusicItems={props.allMusicItems} scrollRef={props.scrollRef}/> */}
     </div>
   );
 }

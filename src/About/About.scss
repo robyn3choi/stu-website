@@ -1,7 +1,15 @@
 .about {
-    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, black 110%), url('./about.jpg');
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, black 140%), url('./about.jpg');
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.about-text {
+    width: 50%;
 }
