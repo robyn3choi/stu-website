@@ -20,15 +20,27 @@ class Header extends Component {
   }
 
   onNavMouseEnter(link) {
-    if (link === 'about') {
-      const rect = this.aboutRef.current.getBoundingClientRect();
-      this.setState({hoveredElementPos: {x: rect.x, y: rect.y}});
+    let rect;
+    switch (link) {
+      case 'about':
+        rect = this.aboutRef.current.getBoundingClientRect();
+        break;
+      case 'music':
+        rect = this.musicRef.current.getBoundingClientRect();
+        break;
+      case 'contact':
+        rect = this.contactRef.current.getBoundingClientRect();
+        break;
+      default:
+        console.log(link + "is invalid");
+        break;
     }
+    console.log(rect);
+    this.setState({ hoveredElementPos: { x: rect.x + (rect.width / 2), y: rect.y + (rect.height / 2)} });
   }
 
   onNavMouseLeave(link) {
-    console.log("leave");
-    this.setState({hoveredElementPos: null});
+    this.setState({ hoveredElementPos: null });
   }
 
   render() {
@@ -37,15 +49,15 @@ class Header extends Component {
         <Router>
 
           <div className='nav'>
-            <div className='nav__link-container nav__link-container_about' ref={this.aboutRef} 
+            <div className='nav__link-container nav__link-container_about' ref={this.aboutRef}
               onMouseEnter={() => this.onNavMouseEnter('about')} onMouseLeave={() => this.onNavMouseLeave('about')}>
               <Link className='nav__link' to="/about">About</Link>
             </div>
-            <div className='nav__link-container nav__link-container_music' ref={this.musicRef} 
+            <div className='nav__link-container nav__link-container_music' ref={this.musicRef}
               onMouseEnter={() => this.onNavMouseEnter('music')} onMouseLeave={() => this.onNavMouseLeave('music')}>
               <HashLink smooth to="/#music" className='nav__link'>Music</HashLink>
             </div>
-            <div className='nav__link-container nav__link-container_contact' ref={this.contactRef} 
+            <div className='nav__link-container nav__link-container_contact' ref={this.contactRef}
               onMouseEnter={() => this.onNavMouseEnter('contact')} onMouseLeave={() => this.onNavMouseLeave('contact')}>
               <Link to="/contact" className='nav__link'>Contact</Link>
             </div>

@@ -8,10 +8,11 @@ class HeaderCanvas extends Component {
     this.canvasRef = React.createRef();
     this.ctx = {};
     this.triangles = [];
-    this.floatingTweens = [];
+    //this.floatingTweens = [];
     this.homingTweens = [];
     this.spreadingTweens = [];
     this.floatingPositions = [];
+    this.floatingTweens = [];
   }
 
   componentDidMount() {
@@ -25,6 +26,7 @@ class HeaderCanvas extends Component {
       const t = new Triangle(canvas.width, canvas.height);
       this.triangles.push(t);
       this.floatingTweens.push(this.floatingTween(t, x));
+      //this.floatingTween(t, x)
     }
 
     this.animate();
@@ -59,6 +61,7 @@ class HeaderCanvas extends Component {
   }
 
   floatingTween(triangle, i) {
+    
     const width = this.canvasRef.current.width;
     const dir = i % 2 === 0 ? 1 : -1;
     const rotation = -20 + 40 * Math.random();
@@ -66,30 +69,52 @@ class HeaderCanvas extends Component {
     return window.TweenMax.to(triangle, time,
       {
         rotation: rotation,
-        x: triangle.x + dir * (width),
+        x: triangle.x + dir * width,
         repeat: -1,
-        yoyo: true
+        yoyo: true,
       });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps === this.props) return;
-
-    //window.TweenMax.killAll();
-    this.floatingTweens.length = 0;
-    this.spreadingTweens.length = 0;
-    this.homingTweens.length = 0;
-    console.log(this.props);
+    
     // we've started hovering over a link
     if (this.props.hoveredElementPos) {
+      // if was spreading, kill spreading tweens
+      let wasSpreading = false;
+      if (this.spreadingTweens.length > 0) {
+        wasSpreading = true;
+        for (const tween of this.spreadingTweens) {
+          tween.kill();
+        }
+        this.spreadingTweens.length = 0;
+      }
+      if (!wasSpreading) {
+        this.floatingPositions.length = 0;
+      }
+      // kill floating tweens
+      for (const tween of this.floatingTweens) {
+        tween.kill();
+      }
+      this.floatingTweens.length = 0;
+      // start homing tweens
       for (const triangle of this.triangles) {
-        this.floatingPositions.push({ x: triangle.x, y: triangle.y });
+        if (!wasSpreading) {
+          this.floatingPositions.push({ x: triangle.x, y: triangle.y });
+        }
         this.homingTweens.push(this.homingTween(triangle));
       }
     }
     // we've stopped hovering over a link
     else {
-      console.log(this.floatingPositions);
+      // if was homing, kill homing tweens
+      if (this.homingTweens.length > 0) {
+        for (const tween of this.homingTweens) {
+          tween.kill();
+        }
+        this.homingTweens.length = 0;
+      }
+      // start spreading tweens
       for (const [i, triangle] of this.triangles.entries()) {
         this.spreadingTweens.push(this.spreadingTween(triangle, i));
       }
@@ -101,7 +126,8 @@ class HeaderCanvas extends Component {
       {
         x: this.floatingPositions[i].x,
         y: this.floatingPositions[i].y,
-        //ease: window.Power3.easeOut,
+        rotation: triangle.rotation + (-2*Math.PI + 4*Math.PI*Math.random()),
+        ease: window.Power1.easeOut,
         onComplete: () => {
           this.floatingTweens.push(this.floatingTween(triangle, i));
         }
@@ -109,12 +135,12 @@ class HeaderCanvas extends Component {
   }
 
   homingTween(triangle) {
-
-    return window.TweenMax.to(triangle, 1,
+    return window.TweenMax.to(triangle, 1.3,
       {
         x: this.props.hoveredElementPos.x,
         y: this.props.hoveredElementPos.y,
-        ease: window.Power3.easeOut
+        rotation: triangle.rotation + (-2*Math.PI + 4*Math.PI*Math.random()),
+        ease: window.Power4.easeOut
       });
   }
 
