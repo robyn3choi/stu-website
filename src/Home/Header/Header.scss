@@ -7,18 +7,70 @@
     height: 100%; 
     width: 100%;
     background: radial-gradient(circle, $background 20%, black 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
 }
 
 .header__face {
     width: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin: auto;
     z-index:1;
 }
 
 .header__title {
     position: absolute;
-    top:0;
+    top: 0;
+    left:0;
+    right: 0;
+    margin: auto;
     z-index:2;
+}
+
+.nav {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 1.1em;
+    letter-spacing: 3px;
+}
+
+.nav__link-container {
+    z-index: 3;
+    position: absolute;
+}
+
+.nav__link-container_about {
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto auto auto 8%;
+    height: 1.1em;
+}
+
+.nav__link-container_music {
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto auto 4% auto;
+    width: 70px;
+}
+
+.nav__link-container_contact {
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto 8% auto auto;
+    height: 1.1em;
+}
+
+.nav__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $almost-white;
 }
