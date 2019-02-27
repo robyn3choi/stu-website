@@ -35,8 +35,7 @@ class Header extends Component {
         console.log(link + "is invalid");
         break;
     }
-    console.log(rect);
-    this.setState({ hoveredElementPos: { x: rect.x + (rect.width / 2), y: rect.y + (rect.height / 2)} });
+    this.setState({ hoveredElementPos: { x: rect.x + (rect.width / 4), y: rect.y - (rect.width / 8) } });
   }
 
   onNavMouseLeave(link) {

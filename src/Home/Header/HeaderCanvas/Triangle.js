@@ -1,5 +1,5 @@
 export default class Triangle {
-  constructor(screenWidth, screenHeight) {
+  constructor(screenWidth, screenHeight, highlight) {
     this.init = () => {
       this.coords = [{},{},{}];
       this.x = -0.5*screenWidth + 2*screenWidth*Math.random();
@@ -15,9 +15,16 @@ export default class Triangle {
         y: (this.coords[0].y + this.coords[1].y + this.coords[2].y) / 3
       }
       this.scale = 1+Math.random()*1.8;
-      const random = 20+40*Math.random();
-      this.color = `${random},${random},${random*1.2}`;//  '100,100,100';
-      this.alpha = '1';
+      if (highlight) {
+        const random = 0.6+0.8*Math.random();
+        this.color = `${random*40},${random*10},${random*14}`;
+        this.alpha = 0;
+      }
+      else {
+        const random = 20+40*Math.random();
+        this.color = `${random},${random},${random*1.2}`;
+        this.alpha = 1;
+      }
       this.rotation = 0;
     }
 
