@@ -7,10 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import 'react-app-polyfill/ie9';
 import smoothscroll from 'smoothscroll-polyfill';
 import 'polyfill-array-includes';
+import {BrowserRouter} from 'react-router-dom';
 
 smoothscroll.polyfill();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

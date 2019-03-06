@@ -1,0 +1,36 @@
+@import '../../../Variables.scss';
+
+.home-nav__link-container {
+    z-index: 3;
+    position: absolute;
+}
+
+.home-nav__link-container_about {
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto auto auto 8%;
+    height: 1.1em;
+}
+
+.home-nav__link-container_music {
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto auto 4% auto;
+    width: 70px;
+}
+
+.home-nav__link-container_contact {
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto 8% auto auto;
+    height: 1.1em;
+}
+
+.home-nav__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $almost-white;
+}

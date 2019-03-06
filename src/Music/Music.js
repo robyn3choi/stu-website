@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MusicItem from './MusicItem/MusicItem';
 import AliasFilterList from './AliasFilter/AliasFilterList';
 import MusicGrid from './MusicGrid/MusicGrid';
-import SectionHeading from '../common/SectionHeading';
+import SectionHeading from '../common/SectionHeading/SectionHeading';
 import './Music.scss';
 
 class Music extends Component {
@@ -37,13 +37,13 @@ class Music extends Component {
   }
 
   render() {
-    if (this.props.allMusicItems.length > 0) {
-      const musicItemComponents = this.createMusicList(this.props.allMusicItems);
+    if (this.props.musicItems.length > 0) {
+      const musicItemComponents = this.createMusicList(this.props.musicItems);
       return(
         <section id='music' ref={this.props.scrollRef}>
           <SectionHeading text='Music' />
           <AliasFilterList 
-            musicItems={this.props.allMusicItems} 
+            musicItems={this.props.musicItems} 
             filterByAlias={this.filterByAlias}
             selectedAlias={this.state.selectedAlias}
           />

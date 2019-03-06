@@ -7,15 +7,17 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Home from './Home/Home';
 import About from './About/About';
 import Contact from './Contact/Contact';
+import Music from './Music/Music';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      allMusicItems: [],
+      musicItems: [],
       aboutParagraphs: [],
-      contactEmail: ''
+      contactEmail: '',
+      route: 'home'
     }
 
     this.musicSection = React.createRef();
@@ -23,19 +25,19 @@ class App extends Component {
 
   componentDidMount() {
     const apiEndpoint = 'https://stu-website.prismic.io/api/v2';
-    // Prismic.api(apiEndpoint)
-    //   .then(api => {
-    //     this.setMusicItems(api);
-    //     this.setAboutParagraphs(api);
-    //     this.setContactEmail(api);
-    //   });
+    Prismic.api(apiEndpoint)
+      .then(api => {
+        this.setMusicItems(api);
+        this.setAboutParagraphs(api);
+        this.setContactEmail(api);
+      });
   }
 
   setMusicItems(api) {
     api.query(Prismic.Predicates.at('document.type', 'music_item'), { orderings: '[my.music_item.release_date desc]' })
       .then(response => {
         if (response) {
-          this.setState({ allMusicItems: response.results });
+          this.setState({ musicItems: response.results });
         }
       });
   }
@@ -60,42 +62,54 @@ class App extends Component {
       });
   }
 
+  setRoute(route) {
+    this.setState({ route: route });
+  }
+
   render() {
-    const { aboutParagraphs, allMusicItems, contactEmail } = this.state;
-    if (aboutParagraphs.length > 0 && allMusicItems.length > 0 && contactEmail.length > 0) {
+    const { aboutParagraphs, musicItems, contactEmail } = this.state;
+    if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
+
+      // switch (route) {
+      //   case 'about':
+      //     return <About paragraphs={aboutParagraphs} />
+      //   case 'music':
+      //     return <Music musicItems={musicItems} />
+      //   case 'contact':
+      //     return <Contact email={contactEmail} />
+      //   default:
+      //     return <Home setRoute={newRoute => this.setRoute(newRoute)}/>
+      // }
+              /* <div className='app-container'>
+          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
+          <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
+          <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
+        </div> */
       return (
-        <Router>
-          <div className='app-container'>
 
-            {/* <div className='nav'>
-              <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><HashLink smooth to="/#music">Music</HashLink></li>
-                <li><Link to="/contact">Contact</Link></li>
-              </ul>
-            </div>
+        <Route render={({ location }) => (
+          <TransitionGroup className="app-container">
+            <CSSTransition
+              key={location.key}
+              classNames="fade"
+              timeout={1000}>
+              <Switch location={location}>
+                <Route exact path="/" render={(props) => <Home {...props} />} />
+                <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
+                <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
+                <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>
+        )} />
+      )
 
-            <TransitionGroup component={null}>
-              <Route render={location => {
-                return (
-                  <Switch>
-                    <Route exact path='/' render={props => <Home {...props} allMusicItems={allMusicItems} scrollRef={this.musicSection} />} />
-                    <Route path='/about' render={props => <About {...props} paragraphs={aboutParagraphs} />} />
-                    <Route path='/contact' render={props => <Contact {...props} email={contactEmail} />} />
-                  </Switch>
-                )
-              }}
-              />
-            </TransitionGroup> */}
 
-          </div>
-        </Router>
-      );
     }
     else {
       return (
-        <Home />
+        <div>loading...</div>
       )
     }
   }

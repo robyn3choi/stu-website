@@ -1,7 +1,7 @@
 @import './../Variables.scss';
 
 #music {
-    background: radial-gradient(circle, $background 20%, black 100%);
+    background: radial-gradient(circle, $background 20%, $almost-black 80%);
     padding: 60px 0;
 }
 

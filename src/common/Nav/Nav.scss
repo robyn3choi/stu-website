@@ -1,0 +1,24 @@
+@import '../../Variables.scss';
+
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: $almost-black;
+    display: flex;
+    justify-content: center;
+}
+
+.nav__link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav__link {
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}

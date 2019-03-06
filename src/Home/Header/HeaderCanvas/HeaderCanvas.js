@@ -34,7 +34,7 @@ class HeaderCanvas extends Component {
     }
 
     if (this.props.position === 'front') {
-      for (let i=0; i<12; i++) {
+      for (let i=0; i<14; i++) {
         const tri = new Triangle(canvas.width, canvas.height, true);
         this.highlightTriangles.push(tri);
         this.highlightRotateTween(tri, i);
@@ -90,19 +90,19 @@ class HeaderCanvas extends Component {
       });
   }
 
-  highlightOpacityTween(tri) {
-    window.TweenMax.to(tri, 0.5,
+  highlightFadeInTween(tri) {
+    window.TweenMax.to(tri, 0.3,
       {
         alpha: 1,
-        ease: window.Power2.easeInOut
+        ease: window.Power2.easeOut
       });
   }
 
   highlightFadeOutTween(tri, i) {
-    window.TweenMax.to(tri, 0.5,
+    window.TweenMax.to(tri, 0.3,
       {
         alpha: 0,
-        ease: window.Power2.easeInOut,
+        ease: window.Power2.easeOut,
         onComplete: () => {this.isHighlightVisible = false}
       });
   }
@@ -121,20 +121,15 @@ class HeaderCanvas extends Component {
     if (prevProps === this.props) return;
     
     if (this.props.hoveredElementPos) {
-      // put triangles at location
-      // rotate them
-      console.log(this.props.hoveredElementPos.x === this.lastHighlightedElementX)
-      console.log(this.isHighlightVisible);
-      for (const [i, tri] of this.highlightTriangles.entries()) {
 
-        
+      for (const [i, tri] of this.highlightTriangles.entries()) {
         if (!this.isHighlightVisible || this.props.hoveredElementPos.x !== this.lastHighlightedElementX) {
-          console.log("change")
           tri.x = this.props.hoveredElementPos.x + (-60 + 120*Math.random());
           tri.y = this.props.hoveredElementPos.y;
         }
-        this.highlightOpacityTween(tri, i);
+        this.highlightFadeInTween(tri, i);
       }
+
       this.isHighlightVisible = true;
       this.lastHighlightedElementX = this.props.hoveredElementPos.x;
     }
@@ -142,68 +137,8 @@ class HeaderCanvas extends Component {
       for (const tri of this.highlightTriangles) {
         this.highlightFadeOutTween(tri);
       }
-      //setTimeout(() => this.isHighlightVisible = false, 500);
     }
-    // // we've started hovering over a link
-    // if (this.props.hoveredElementPos) {
-    //   // if was spreading, kill spreading tweens
-    //   let wasSpreading = false;
-    //   if (this.spreadingTweens.length > 0) {
-    //     wasSpreading = true;
-    //     for (const tween of this.spreadingTweens) {
-    //       tween.kill();
-    //     }
-    //     this.spreadingTweens.length = 0;
-    //   }
-    //   if (!wasSpreading) {
-    //     this.floatingPositions.length = 0;
-    //   }
-    //   for (const [i, triangle] of this.homingTriangles.entries()) {
-    //     if (!wasSpreading) {
-    //       this.floatingPositions.push({ x: triangle.x, y: triangle.y });
-    //     }
-    //     this.homingTweens.push(this.homingTween(triangle, i));
-    //   }
-    // }
-    // // we've stopped hovering over a link
-    // else {
-    //   // if was homing, kill homing tweens
-    //   if (this.homingTweens.length > 0) {
-    //     for (const tween of this.homingTweens) {
-    //       tween.kill();
-    //     }
-    //     this.homingTweens.length = 0;
-    //   }
-    //   // start spreading tweens
-    //   for (const [i, triangle] of this.homingTriangles.entries()) {
-    //     this.spreadingTweens.push(this.spreadingTween(triangle, i));
-    //   }
-    // }
   }
-
-  // spreadingTween(triangle, i) {
-  //   return window.TweenMax.to(triangle, 1.5,
-  //     {
-  //       x: this.floatingPositions[i].x,
-  //       y: this.floatingPositions[i].y,
-  //       //rotation: triangle.rotation + (-2*Math.PI + 4*Math.PI*Math.random()),
-  //       ease: window.Power1.easeOut,
-  //       onComplete: () => {
-  //         this.floatingTweens.push(this.floatingTween(triangle, i));
-  //       }
-  //     });
-  // }
-
-  // homingTween(triangle, i) {
-  //   return window.TweenMax.to(triangle, 1,
-  //     {
-  //       x: this.props.hoveredElementPos.x,
-  //       y: this.props.hoveredElementPos.y,
-  //       //rotation: triangle.rotation + (-2*Math.PI + 4*Math.PI*Math.random()),
-  //       ease: window.Power4.easeOut,
-  //     });
-  // }
-
 
   render() {
     return (

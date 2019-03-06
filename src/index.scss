@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200|Source+Sans+Pro:400,300|Assistant:200,300|Work+Sans:200,300,400|Open+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Raleway:200|Source+Sans+Pro:400,300|Assistant:200,300|Work+Sans:200,300,400|Open+Sans:300,400|Josefin+Sans:300,100');
 @import './Variables.scss';
 
 html, body, #root {
@@ -10,7 +10,7 @@ body {
   padding: 0;
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   background-color: $background;
-  //background: radial-gradient(circle, $background 0%, black 140%);
+  background: radial-gradient(circle, $background 20%, $almost-black 80%);
   color: $almost-white;
 }
 
@@ -32,4 +32,22 @@ p {
   font-size: 1.2em;
   letter-spacing: 0.2px;
   line-height:1.5em;
+}
+
+button {
+  background:none;
+  color:inherit;
+  border:none; 
+  padding:0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
 }
