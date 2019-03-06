@@ -9,12 +9,7 @@ class HeaderCanvas extends Component {
     this.ctx = {};
     this.triangles = [];
     this.highlightTriangles = [];
-    //this.floatingTweens = [];
-    this.homingTweens = [];
-    this.spreadingTweens = [];
-    this.floatingPositions = [];
     this.floatingTweens = [];
-    this.hoveringTweens = [];
 
     this.isHighlightVisible = false;
     this.lastHighlightedElementX = 0;
@@ -124,7 +119,7 @@ class HeaderCanvas extends Component {
 
       for (const [i, tri] of this.highlightTriangles.entries()) {
         if (!this.isHighlightVisible || this.props.hoveredElementPos.x !== this.lastHighlightedElementX) {
-          tri.x = this.props.hoveredElementPos.x + (-60 + 120*Math.random());
+          tri.x = this.props.hoveredElementPos.x + (-60 + 150*Math.random());
           tri.y = this.props.hoveredElementPos.y;
         }
         this.highlightFadeInTween(tri, i);

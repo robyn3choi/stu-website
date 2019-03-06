@@ -3,6 +3,7 @@ import MusicItem from './MusicItem/MusicItem';
 import AliasFilterList from './AliasFilter/AliasFilterList';
 import MusicGrid from './MusicGrid/MusicGrid';
 import SectionHeading from '../common/SectionHeading/SectionHeading';
+import Nav from '../common/Nav/Nav';
 import './Music.scss';
 
 class Music extends Component {
@@ -40,7 +41,8 @@ class Music extends Component {
     if (this.props.musicItems.length > 0) {
       const musicItemComponents = this.createMusicList(this.props.musicItems);
       return(
-        <section id='music' ref={this.props.scrollRef}>
+        <div className='music' ref={this.props.scrollRef}>
+          <Nav leftLink='About' rightLink='Contact'/>
           <SectionHeading text='Music' />
           <AliasFilterList 
             musicItems={this.props.musicItems} 
@@ -48,7 +50,7 @@ class Music extends Component {
             selectedAlias={this.state.selectedAlias}
           />
           <MusicGrid musicItemComponents={musicItemComponents} ref={this.musicGrid}/>
-        </section>
+        </div>
       );
     }
     

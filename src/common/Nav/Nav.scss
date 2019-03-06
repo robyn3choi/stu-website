@@ -5,20 +5,63 @@
     top: 0;
     width: 100%;
     height: 60px;
-    background: $almost-black;
+    background: $black;
     display: flex;
     justify-content: center;
+    z-index: 99;
 }
 
-.nav__link-container {
+.nav__links {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.nav__link {
+.nav__link-container {
     width: 130px;
     text-align: center;
+}
+
+.nav__link-container {
+    width: 150px;
+}
+
+.nav__link-container_left {
+    text-align: right;
+}
+
+.nav__link-container_right {
+    text-align: left;
+}
+
+.nav__link {
     text-decoration: none;
-    color: inherit;
+    color: $white;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans';
+    letter-spacing: 0.06em;
+    font-weight: 300;
+    transition: color 0.2s ease-out;
+}
+
+.nav__link:hover {
+    color: $red;
+}
+
+.nav__face {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    top: 0;
+}
+
+.nav__face_highlighted {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+}
+
+.nav__face_highlighted:hover {
+    opacity: 1;
 }

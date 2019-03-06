@@ -4,6 +4,7 @@
     width: 256px;
     text-align: center;
     transition: flex 0.5s;
+    font-family: 'Josefin Sans';
 }
 
 .music-item__overlay {
@@ -13,13 +14,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0,0,0,1);
+    background-color: black;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.4s;
 }
 
 .music-item__overlay:hover {
-    opacity: 0.8;
+    opacity: 0.84;
 }
 
 .music-item__content {
@@ -30,8 +31,18 @@
     width: 220px;
 }
 
+.music-item__title {
+    margin: 0.5em;
+    font-size: 1.4em;
+    line-height: 1.2em;
+}
+
+.music-item__alias {
+    margin: 0.5em;
+}
+
 .music-item__icon-container {
-    margin: 4px;
+    margin: 0.7em;
     display: flex;
     align-items: center;
     justify-content: center;

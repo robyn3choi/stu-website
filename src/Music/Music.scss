@@ -1,8 +1,8 @@
 @import './../Variables.scss';
 
-#music {
-    background: radial-gradient(circle, $background 20%, $almost-black 80%);
-    padding: 60px 0;
+.music {
+    //background: radial-gradient(circle, $background 20%, $black 80%);
+    padding: 120px 0;
 }
 
 .alias-filter-list {

@@ -10,20 +10,8 @@ body {
   padding: 0;
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   background-color: $background;
-  background: radial-gradient(circle, $background 20%, $almost-black 80%);
-  color: $almost-white;
-}
-
-h3 {
-  margin-bottom: 10;
-  font-weight: 300;
-}
-
-h4 {
-  margin-top: 0;
-  font-weight: 300;
-  font-size: 0.9em;
-  letter-spacing: 0.02em;
+  background: radial-gradient(circle, $background 20%, $black 90%);
+  color: $white;
 }
 
 p {

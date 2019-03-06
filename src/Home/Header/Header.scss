@@ -6,7 +6,7 @@
     background-repeat: no-repeat;
     height: 100%; 
     width: 100%;
-    background: radial-gradient(circle, $background 20%, $almost-black 80%);
+    background: radial-gradient(circle, $background 20%, $black 80%);
 }
 
 .header__title-text {
@@ -62,10 +62,4 @@
     z-index:2;
 }
 
-.home-nav {
-    font-family: 'Josefin Sans';
-    font-weight: 300;
-    font-size: 1.2em;
-    letter-spacing: 1.5px;
-}
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import SectionHeading from '../common/SectionHeading/SectionHeading';
 import Nav from '../common/Nav/Nav';
+import './Contact.scss';
 
-const About = (props) => {
+const Contact = (props) => {
   return (
     <div className='contact'>
       <Nav leftLink='About' rightLink='Music'/>
@@ -12,4 +13,4 @@ const About = (props) => {
   );
 }
 
-export default About;
+export default Contact;

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Prismic from 'prismic-javascript';
-import { Route, Link, Switch, BrowserRouter as Router } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import { Route, Link, Switch, BrowserRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Home from './Home/Home';
 import About from './About/About';
@@ -87,7 +86,6 @@ class App extends Component {
           <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
         </div> */
       return (
-
         <Route render={({ location }) => (
           <TransitionGroup className="app-container">
             <CSSTransition
@@ -104,8 +102,6 @@ class App extends Component {
           </TransitionGroup>
         )} />
       )
-
-
     }
     else {
       return (

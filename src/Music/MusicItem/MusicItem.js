@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MusicItemIcon from '../MusicItemIcon/MusicItemIcon'
-import './MusicItem.css';
+import './MusicItem.scss';
 
 const ICON_FADEIN_INTERVAL = 120;
 
@@ -66,8 +66,8 @@ class MusicItem extends Component {
           <img alt={this.props.title} src={this.props.coverArt} />
           <div className='music-item__overlay' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
             <div className='music-item__content'>
-              <h3>{this.props.title}</h3>
-              <h4>{this.props.alias}</h4>
+              <h2 className='music-item__title'>{this.props.title}</h2>
+              <h3 className='music-item__alias'>{this.props.alias}</h3>
               <div className='music-item__icon-container'>
                 {this.state.icons}
               </div>
