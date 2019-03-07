@@ -8,7 +8,8 @@ const AliasFilterList = (props) => {
   uniqueAliases.unshift(null);
   const buttons = uniqueAliases.map((alias, i) => 
     <AliasFilter 
-      key={i}
+      key={"alias-filter-" + i}
+      index={i}
       isSelected={props.selectedAlias === alias ? true : false} 
       alias={alias} 
       filterByAlias={props.filterByAlias} 

@@ -31,3 +31,15 @@
     transform:  translate(2px, -2px);
     box-shadow: -3px 3px $dark-red;
 }
+
+.alias-filter-enter {
+    transform: translateY(40px);
+    opacity: 0;
+    transition: none;
+}
+
+.alias-filter-enter-done {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.8s cubic-bezier(.01,.74,.41,1.27);
+}

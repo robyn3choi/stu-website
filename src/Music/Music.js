@@ -5,22 +5,29 @@ import MusicGrid from './MusicGrid/MusicGrid';
 import SectionHeading from '../common/SectionHeading/SectionHeading';
 import Nav from '../common/Nav/Nav';
 import './Music.scss';
+import { CSSTransition } from 'react-transition-group';
 
 class Music extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      selectedAlias: null
+      selectedAlias: null,
+      isMounted: false
     };
     this.musicGrid = React.createRef();
+  }
+
+  componentDidMount() {
+    this.setState({isMounted: true});
   }
 
   createMusicList = (musicItems) => {
     const musicItemArray = musicItems.map((musicItem, i) => {
       const item = musicItem.data;
       return <MusicItem 
-        key = {i}
+        key = {"music-item-" + i}
+        index = {i}
         title={item.title}
         alias={item.alias}
         coverArt={item.cover_art.url}
@@ -41,9 +48,11 @@ class Music extends Component {
     if (this.props.musicItems.length > 0) {
       const musicItemComponents = this.createMusicList(this.props.musicItems);
       return(
-        <div className='music' ref={this.props.scrollRef}>
-          <Nav leftLink='About' rightLink='Contact'/>
-          <SectionHeading text='Music' />
+        <div className='music non-home-section' ref={this.props.scrollRef}>
+          {/* <Nav leftLink='About' rightLink='Contact'/> */}
+          <CSSTransition in={this.state.isMounted} classNames="section-heading" timeout={500}>
+            <SectionHeading text='Music' />
+          </CSSTransition>
           <AliasFilterList 
             musicItems={this.props.musicItems} 
             filterByAlias={this.filterByAlias}

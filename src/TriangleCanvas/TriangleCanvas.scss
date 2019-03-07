@@ -1,0 +1,13 @@
+.triangle__canvas {
+    height: 100%; 
+    width: 100%;
+    position: absolute;
+}
+
+.triangle__canvas_back {
+    z-index: 0;
+}
+
+.triangle__canvas_front {
+    z-index: 2;
+}

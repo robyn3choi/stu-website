@@ -1,3 +1,34 @@
+@import '../Variables.scss';
+
 .home {
     height: 100%;
+}
+
+.home__face {
+    width: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+    z-index:1;
+}
+
+.home__title {
+    position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    margin: auto;
+    z-index:2;
+}
+
+.home-enter {
+    background: $stu-face;
+}
+
+.home-enter-done {
+    background: none;
+    transition: background 2s ease-out;
 }

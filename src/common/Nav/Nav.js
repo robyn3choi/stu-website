@@ -3,11 +3,32 @@ import './Nav.scss';
 import { Link } from 'react-router-dom';
 
 const Nav = (props) => {
+
+  let leftLink = '';
+  let rightLink = '';
+  
+  switch (props.route) {
+    case '/about':
+      leftLink = 'music';
+      rightLink = 'contact';
+      break;
+    case '/music':
+      leftLink = 'about';
+      rightLink = 'contact';
+      break;
+    case '/contact':
+      leftLink = 'about';
+      rightLink = 'music';
+      break;
+    default:
+      break;
+  }
+
   return (
     <div className='nav'>
       <div className='nav__links'>
         <div className='nav__link-container nav__link-container_left'>
-          <Link to={`/${props.leftLink}`} className='nav__link'>{props.leftLink}</Link>
+          <Link to={`/${leftLink}`} className='nav__link'>{leftLink}</Link>
         </div>
         <div className='nav__link-container'>
           <Link to='/' className='nav__link'>
@@ -16,7 +37,7 @@ const Nav = (props) => {
           </Link>
         </div>
         <div className='nav__link-container nav__link-container_right'>
-          <Link to={`/${props.rightLink}`} className='nav__link'>{props.rightLink}</Link>
+          <Link to={`/${rightLink}`} className='nav__link'>{rightLink}</Link>
         </div>
       </div>
     </div>

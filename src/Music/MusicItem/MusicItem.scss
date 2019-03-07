@@ -47,3 +47,14 @@
     align-items: center;
     justify-content: center;
 }
+
+.music-item-enter {
+    transform: translateY(80px);
+    opacity: 0;
+}
+
+.music-item-enter-done {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.8s cubic-bezier(.01,.74,.41,1.35);
+}

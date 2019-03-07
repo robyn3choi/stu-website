@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import Prismic from 'prismic-javascript';
-import { Route, Link, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Home from './Home/Home';
 import About from './About/About';
 import Contact from './Contact/Contact';
 import Music from './Music/Music';
+import TriangleCanvas from './TriangleCanvas/TriangleCanvas';
+import Nav from './common/Nav/Nav';
 
 class App extends Component {
 
@@ -16,7 +18,7 @@ class App extends Component {
       musicItems: [],
       aboutParagraphs: [],
       contactEmail: '',
-      route: 'home'
+      hoveredElementPos: null
     }
 
     this.musicSection = React.createRef();
@@ -65,41 +67,51 @@ class App extends Component {
     this.setState({ route: route });
   }
 
+  setHoveredElementPos(pos) {
+    this.setState({ hoveredElementPos: pos });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setHoveredElementPos(null);
+    }
+  }
+
+
   render() {
     const { aboutParagraphs, musicItems, contactEmail } = this.state;
     if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
 
-      // switch (route) {
-      //   case 'about':
-      //     return <About paragraphs={aboutParagraphs} />
-      //   case 'music':
-      //     return <Music musicItems={musicItems} />
-      //   case 'contact':
-      //     return <Contact email={contactEmail} />
-      //   default:
-      //     return <Home setRoute={newRoute => this.setRoute(newRoute)}/>
-      // }
-              /* <div className='app-container'>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
-          <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
-          <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
-          <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
-        </div> */
       return (
         <Route render={({ location }) => (
-          <TransitionGroup className="app-container">
-            <CSSTransition
+          <div className='app-container'>
+
+            <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos} />
+            <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos} />
+
+            <TransitionGroup>
+              <CSSTransition
               key={location.key}
-              classNames="fade"
-              timeout={1000}>
-              <Switch location={location}>
-                <Route exact path="/" render={(props) => <Home {...props} />} />
-                <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
-                <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
-                <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>
+                classNames="nav"
+                timeout={1100}>
+                <Nav route={this.props.location.pathname} />
+              </CSSTransition>
+            </TransitionGroup>
+
+            <TransitionGroup className='transition-container'>
+              <CSSTransition
+                key={location.key}
+                classNames="fade"
+                timeout={100}>
+                <Switch location={location}>
+                  <Route exact path="/" render={(props) => <Home {...props} setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />} />
+                  <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
+                  <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
+                  <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          </div>
         )} />
       )
     }
@@ -111,4 +123,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -13,3 +13,14 @@
 .about-text {
     width: 50%;
 }
+
+.about-text-enter {
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.about-text-enter-done {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.8s;
+}
