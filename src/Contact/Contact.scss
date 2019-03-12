@@ -1,7 +1,17 @@
+@import './../Variables.scss';
+
 .contact {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100%;
+}
+
+.contact__email {
+    color: $white;
+    text-decoration: none;
+    margin: 22px;
+    font-family: 'josefin sans';
+    font-weight: 100;
+    font-size: 1.7em;
 }

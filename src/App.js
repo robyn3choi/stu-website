@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Prismic from 'prismic-javascript';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -15,16 +15,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMounted: false,
+      fadeInBackground: false,
       musicItems: [],
       aboutParagraphs: [],
+      contactDescription: '',
       contactEmail: '',
-      hoveredElementPos: null
+      hoveredElementPos: null,
+      hasVisitedHome: false
     }
 
     this.musicSection = React.createRef();
   }
 
   componentDidMount() {
+    this.setState({isMounted: true});
     const apiEndpoint = 'https://stu-website.prismic.io/api/v2';
     Prismic.api(apiEndpoint)
       .then(api => {
@@ -59,6 +64,7 @@ class App extends Component {
       .then(response => {
         if (response) {
           this.setState({ contactEmail: response.results[0].data.email });
+          this.setState({ contactDescription: response.results[0].data.description[0].text })
         }
       });
   }
@@ -77,41 +83,43 @@ class App extends Component {
     }
   }
 
+  visitHome() {
+    this.setState({hasVisitedHome: true});
+  }
 
   render() {
-    const { aboutParagraphs, musicItems, contactEmail } = this.state;
+    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasVisitedHome, isMounted } = this.state;
+
     if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
 
       return (
         <Route render={({ location }) => (
+          // <CSSTransition key={location.key} appear={true} in={isMounted && location.pathname === '/' && !hasVisitedHome} classNames='app' timeout={2000}>
           <div className='app-container'>
 
-            <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos} />
-            <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos} />
+            <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos} onlyRedTriangles={false} />
+            <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos} onlyRedTriangles={false} />
 
-            <TransitionGroup>
-              <CSSTransition
-              key={location.key}
-                classNames="nav"
-                timeout={1100}>
+              <CSSTransition appear={true} in key={location.key} classNames="nav" timeout={3000}>
                 <Nav route={this.props.location.pathname} />
               </CSSTransition>
-            </TransitionGroup>
 
             <TransitionGroup className='transition-container'>
               <CSSTransition
                 key={location.key}
-                classNames="fade"
-                timeout={100}>
+                classNames="page"
+                timeout={500}>
                 <Switch location={location}>
-                  <Route exact path="/" render={(props) => <Home {...props} setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />} />
+                  <Route exact path="/" render={(props) => <Home {...props} 
+                    setHoveredElementPos={pos => this.setHoveredElementPos(pos)} visitHome={() => this.visitHome()} />} />
                   <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
                   <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
-                  <Route path="/contact" render={(props) => <Contact {...props} email={contactEmail} />} />
+                  <Route path="/contact" render={(props) => <Contact {...props} description={contactDescription} email={contactEmail} />} />
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
           </div>
+          // </CSSTransition>
         )} />
       )
     }

@@ -66,7 +66,7 @@ class HeaderCanvas extends Component {
     this.ctx.lineTo(triangle.coords[1].x + triangle.x, triangle.coords[1].y + triangle.y);
     this.ctx.lineTo(triangle.coords[2].x + triangle.x, triangle.coords[2].y + triangle.y);
     this.ctx.closePath();
-    this.ctx.fillStyle = 'rgba(' + triangle.color + ',' + triangle.alpha + ')';
+    this.ctx.fillStyle = 'blue';
     this.ctx.fill();
     this.ctx.restore();
   }

@@ -8,6 +8,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.setState({isMounted: true});
+    this.props.visitHome();
   }
 
   setHoveredElementPos(hoveredElementPos) {
@@ -16,12 +17,12 @@ class Home extends Component {
 
   render() {
     return (
-      <CSSTransition in={this.state.isMounted} classNames="home" timeout={1000}>
+      <CSSTransition in={this.state.isMounted && !this.props.hasVisitedHome} classNames="home" timeout={2000}>
       <div className='home'>
         <div className='home-nav'>
-          <HomeNavLink name='about' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
-          <HomeNavLink name='music' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
-          <HomeNavLink name='contact' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
+          <HomeNavLink text='about' path='/about' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
+          <HomeNavLink text='music' path='/music' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
+          <HomeNavLink text='contact' path='/contact' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
         </div>
         <img className='home__title' alt='home-title' src={require('./stu-title.png')} />
         <img className='home__face' alt='home-face' src={require('./stu-face.png')} />

@@ -66,8 +66,8 @@ class MusicItem extends Component {
   render() {
     return (
       <div className='music-item' data-groups={`["${this.props.alias}"]`}>
-        <CSSTransition in={this.state.isMounted} classNames="music-item" timeout={500+(this.props.index*120)}>
-          <img alt={this.props.title} src={this.props.coverArt} />
+        <CSSTransition in={this.state.isMounted} classNames="music-item__img" timeout={500+(this.props.index*120)}>
+          <img className='music-item__img' alt={this.props.title} src={this.props.coverArt} />
         </CSSTransition>
         <div className='music-item__overlay' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
 

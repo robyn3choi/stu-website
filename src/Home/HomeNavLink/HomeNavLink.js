@@ -11,22 +11,23 @@ class HomeNavLink extends Component {
 
   onNavMouseEnter() {
     const rect = this.navLinkRef.current.getBoundingClientRect();
-    this.props.setHoveredElementPos({ x: rect.x + (rect.width / 4), y: rect.y - (rect.width / 8) });
+    const offset = (this.props.isContactEmail ? 3 : 4);
+    this.props.setHoveredElementPos({ x: rect.left + (rect.width / offset), y: rect.top - (rect.height / 2) });
   }
 
-  onNavMouseLeave(link) {
+  onNavMouseLeave() {
     this.props.setHoveredElementPos(null);
   }
 
   render() {
     return (
-      <div className={`home-nav__link-container home-nav__link-container_${this.props.name}`} 
+      <div className={`home-nav__link-container home-nav__link-container_${this.props.isContactEmail ? 'contact-email' : this.props.text}`} 
         ref={this.navLinkRef}
-        onMouseEnter={() => this.onNavMouseEnter(this.props.name)} 
-        onMouseLeave={() => this.onNavMouseLeave(this.props.name)} >
+        onMouseEnter={() => this.onNavMouseEnter()} 
+        onMouseLeave={() => this.onNavMouseLeave()} >
   
-        <Link to={`/${this.props.name}`} className='home-nav__link'>
-          {this.props.name}
+        <Link to={this.props.path} className='home-nav__link'>
+          {this.props.text}
         </Link>
   
       </div>

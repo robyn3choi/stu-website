@@ -7,6 +7,21 @@
     font-family: 'Josefin Sans';
 }
 
+.music-item__img-enter {
+    transform: translateY(80px);
+    opacity: 0;
+}
+
+.music-item__img-enter-done {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.8s cubic-bezier(.01,.74,.41,1.35);
+}
+
+.music-item__img-enter + .music-item__overlay:hover {
+    opacity: 0;
+}
+
 .music-item__overlay {
     display: block;
     position: absolute;
@@ -46,15 +61,4 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.music-item-enter {
-    transform: translateY(80px);
-    opacity: 0;
-}
-
-.music-item-enter-done {
-    transform: translateY(0);
-    opacity: 1;
-    transition: all 0.8s cubic-bezier(.01,.74,.41,1.35);
 }

@@ -21,16 +21,16 @@ export default class Triangle {
 
       if (highlight) {
         const random = 0.6+0.8*Math.random();
-        this.color = `${random*40},${random*10},${random*14}`;
+        this.color = `${Math.floor(random*40)},${Math.floor(random*10)},${Math.floor(random*14)}`;
         this.alpha = 0;
       }
       else {
         const random = 20+40*Math.random();
-        this.color = `${random},${random},${random*1.2}`;
+        this.color = `${Math.floor(random)},${Math.floor(random)},${Math.floor(random*1.2)}`;
         this.alpha = 1;
       }
     }
-
+  
     this.init();
   }
 }

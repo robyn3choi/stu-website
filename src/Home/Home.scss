@@ -1,7 +1,7 @@
 @import '../Variables.scss';
 
 .home {
-    height: 100%;
+    min-height: 100vh;
 }
 
 .home__face {
@@ -24,11 +24,12 @@
     z-index:2;
 }
 
-.home-enter {
-    background: $stu-face;
+.home.home-enter {
+    opacity: 1;
+    background-color: $stu-face;
 }
 
-.home-enter-done {
-    background: none;
-    transition: background 2s ease-out;
+.home.home-enter-done {
+    background-color: radial-gradient(circle, $background 10%, $black 70%);
+    transition: background-color 2s ease-out;
 }

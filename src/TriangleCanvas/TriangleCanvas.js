@@ -20,22 +20,24 @@ class TriangleCanvas extends Component {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     this.ctx = canvas.getContext('2d');
-    const numTriangles = canvas.width * canvas.height / 40000;
 
-    for (let i = 0; i < numTriangles; i++) {
-      const tri = new Triangle(canvas.width, canvas.height);
-      this.triangles.push(tri);
-      this.floatingTweens.push(this.floatingTween(tri, i));
+    if (!this.props.onlyHighlightTriangles) {
+      const numTriangles = canvas.width * canvas.height / 40000;
+      for (let i = 0; i < numTriangles; i++) {
+        const tri = new Triangle(canvas.width, canvas.height);
+        this.triangles.push(tri);
+        this.floatingTweens.push(this.floatingTween(tri, i));
+      }
     }
 
+    const numHighlightTriangles = this.props.onlyHighlightTriangles ? 36 : 14;
     if (this.props.position === 'front') {
-      for (let i=0; i<14; i++) {
+      for (let i=0; i<numHighlightTriangles; i++) {
         const tri = new Triangle(canvas.width, canvas.height, true);
         this.highlightTriangles.push(tri);
         this.highlightRotateTween(tri, i);
       }
     }
-
 
     this.animate();
   }
@@ -86,7 +88,7 @@ class TriangleCanvas extends Component {
   }
 
   highlightFadeInTween(tri) {
-    window.TweenMax.to(tri, 0.3,
+    window.TweenMax.to(tri, 1,
       {
         alpha: 1,
         ease: window.Power2.easeOut
@@ -94,7 +96,7 @@ class TriangleCanvas extends Component {
   }
 
   highlightFadeOutTween(tri, i) {
-    window.TweenMax.to(tri, 0.3,
+    window.TweenMax.to(tri, 1,
       {
         alpha: 0,
         ease: window.Power2.easeOut,
@@ -116,10 +118,10 @@ class TriangleCanvas extends Component {
     if (prevProps === this.props) return;
     
     if (this.props.hoveredElementPos) {
-
       for (const [i, tri] of this.highlightTriangles.entries()) {
         if (!this.isHighlightVisible || this.props.hoveredElementPos.x !== this.lastHighlightedElementX) {
-          tri.x = this.props.hoveredElementPos.x + (-60 + 150*Math.random());
+          const xOffset = this.props.onlyHighlightTriangles ? (-120 + 300*Math.random()) : (-60 + 120*Math.random());
+          tri.x = this.props.hoveredElementPos.x + xOffset;
           tri.y = this.props.hoveredElementPos.y;
         }
         this.highlightFadeInTween(tri, i);

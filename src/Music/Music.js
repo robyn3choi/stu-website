@@ -6,6 +6,8 @@ import SectionHeading from '../common/SectionHeading/SectionHeading';
 import Nav from '../common/Nav/Nav';
 import './Music.scss';
 import { CSSTransition } from 'react-transition-group';
+import Lottie from 'react-lottie';
+import * as animData from './data.json';
 
 class Music extends Component {
   
@@ -45,13 +47,23 @@ class Music extends Component {
   }
 
   render() {
+    const defaultOptions = {
+      loop: false,
+      autoplay: true, 
+      animationData: animData.default,
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+      }
+    };
+
     if (this.props.musicItems.length > 0) {
       const musicItemComponents = this.createMusicList(this.props.musicItems);
       return(
         <div className='music non-home-section' ref={this.props.scrollRef}>
-          {/* <Nav leftLink='About' rightLink='Contact'/> */}
-          <CSSTransition in={this.state.isMounted} classNames="section-heading" timeout={500}>
-            <SectionHeading text='Music' />
+          <CSSTransition in={this.state.isMounted} classNames="fade" timeout={500}>
+            <div className='page-heading'>
+              <Lottie options={defaultOptions} />
+            </div>
           </CSSTransition>
           <AliasFilterList 
             musicItems={this.props.musicItems} 
