@@ -21,7 +21,7 @@ export default class Triangle {
 
       if (highlight) {
         const random = 0.6+0.8*Math.random();
-        this.color = `${Math.floor(random*40)},${Math.floor(random*10)},${Math.floor(random*14)}`;
+        this.color = `${Math.floor(random*50)},${Math.floor(random*15)},${Math.floor(random*19)}`;
         this.alpha = 0;
       }
       else {

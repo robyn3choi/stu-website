@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Triangle from '../Home/Triangle';
 import './TriangleCanvas.scss';
+import { CSSTransition } from 'react-transition-group';
+
 
 class TriangleCanvas extends Component {
   constructor(props) {
@@ -32,7 +34,7 @@ class TriangleCanvas extends Component {
 
     const numHighlightTriangles = this.props.onlyHighlightTriangles ? 36 : 14;
     if (this.props.position === 'front') {
-      for (let i=0; i<numHighlightTriangles; i++) {
+      for (let i = 0; i < numHighlightTriangles; i++) {
         const tri = new Triangle(canvas.width, canvas.height, true);
         this.highlightTriangles.push(tri);
         this.highlightRotateTween(tri, i);
@@ -100,7 +102,7 @@ class TriangleCanvas extends Component {
       {
         alpha: 0,
         ease: window.Power2.easeOut,
-        onComplete: () => {this.isHighlightVisible = false}
+        onComplete: () => { this.isHighlightVisible = false }
       });
   }
 
@@ -116,11 +118,11 @@ class TriangleCanvas extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps === this.props) return;
-    
+
     if (this.props.hoveredElementPos) {
       for (const [i, tri] of this.highlightTriangles.entries()) {
         if (!this.isHighlightVisible || this.props.hoveredElementPos.x !== this.lastHighlightedElementX) {
-          const xOffset = this.props.onlyHighlightTriangles ? (-120 + 300*Math.random()) : (-60 + 120*Math.random());
+          const xOffset = this.props.onlyHighlightTriangles ? (-120 + 300 * Math.random()) : (-60 + 120 * Math.random());
           tri.x = this.props.hoveredElementPos.x + xOffset;
           tri.y = this.props.hoveredElementPos.y;
         }
@@ -137,9 +139,12 @@ class TriangleCanvas extends Component {
     }
   }
 
+
   render() {
     return (
-      <canvas className={`triangle__canvas triangle__canvas_${this.props.position}`} ref={this.canvasRef} />
+      <CSSTransition appear={true} in={this.props.shouldPlayIntro} classNames="triangle-canvas" timeout={4500}>
+        <canvas className={`triangle-canvas triangle-canvas_${this.props.position}`} ref={this.canvasRef} />
+      </CSSTransition>
     );
   }
 }

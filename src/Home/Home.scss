@@ -2,6 +2,7 @@
 
 .home {
     min-height: 100vh;
+    flex: 1;
 }
 
 .home__face {
@@ -16,6 +17,7 @@
 }
 
 .home__title {
+    width: 700px;
     position: absolute;
     top: 0;
     left:0;
@@ -24,6 +26,7 @@
     z-index:2;
 }
 
+// initial homepage intro sequence
 .home.home-enter {
     opacity: 1;
     background-color: $stu-face;
@@ -33,3 +36,23 @@
     background-color: radial-gradient(circle, $background 10%, $black 70%);
     transition: background-color 2s ease-out;
 }
+
+//normal page load fade in
+.home.page-enter {
+    opacity: 0;
+}
+
+.home.page-enter-done {
+    opacity: 1;
+    transition: $page-transition;
+}
+
+.home-nav-enter {
+    opacity: 0;
+}
+
+.home-nav-enter-done {
+    opacity: 1;
+    transition: $page-transition;
+}
+

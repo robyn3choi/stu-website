@@ -1,0 +1,39 @@
+@import './../../Variables.scss';
+
+.music-item__icon {
+    width: 32px;
+    margin: 6px;
+    position: relative;
+    height:32px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.music-item__icon_show {
+    opacity: 1;
+}
+
+.music-item__icon-image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    opacity: 1;
+    transition: $hover-transition;
+}
+
+
+.music-item__icon-image_highlighted {
+    opacity: 0;
+}
+
+.music-item__icon:hover .music-item__icon-image {
+    opacity: 0;
+}
+
+.music-item__icon:hover .music-item__icon-image_highlighted {
+    opacity: 1;
+}
+

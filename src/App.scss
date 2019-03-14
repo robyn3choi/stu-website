@@ -14,12 +14,12 @@
 
 .page-exit {
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: $page-transition;
 }
 
-// .page-enter {
-//   opacity: 0;
-// }
+.home.page-enter ~ .page-exit {
+  position: absolute;
+}
 
 .page-enter-done {
   opacity: 1;
@@ -43,6 +43,7 @@
 .app-container {
   height: 100%;
   background: $vignette-background;
+  display: flex;
 }
 
 .app-container.app-appear {

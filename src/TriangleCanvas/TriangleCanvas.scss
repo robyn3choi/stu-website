@@ -1,13 +1,22 @@
-.triangle__canvas {
+.triangle-canvas {
     height: 100%; 
     width: 100%;
     position: absolute;
 }
 
-.triangle__canvas_back {
+.triangle-canvas_back {
     z-index: 0;
 }
 
-.triangle__canvas_front {
+.triangle-canvas_front {
     z-index: 2;
+}
+
+.triangle-canvas-appear {
+    opacity: 0;
+}
+
+.triangle-canvas-enter-done {
+    opacity: 1;
+    transition: opacity 2s ease-out;
 }

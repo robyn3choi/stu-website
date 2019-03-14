@@ -19,6 +19,10 @@ class HomeNavLink extends Component {
     this.props.setHoveredElementPos(null);
   }
 
+  componentWillUnmount() {
+    this.props.setHoveredElementPos(null);
+  }
+
   render() {
     return (
       <div className={`home-nav__link-container home-nav__link-container_${this.props.isContactEmail ? 'contact-email' : this.props.text}`} 

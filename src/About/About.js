@@ -42,22 +42,4 @@ class About extends Component {
   }
 }
 
-// const About = (props) => {
-//   const pElements = props.paragraphs.map((paragraph, i) => <p key={i}>{paragraph}</p>);
-//   return (
-//     <div className='about non-home-section'>
-//     <TransitionGroup>
-//       <CSSTransition key="about-heading" classNames="about-heading" timeout={1000}>
-//         <SectionHeading text='About' />
-//       </CSSTransition>
-//     </TransitionGroup>
-//     <TransitionGroup>
-//       <CSSTransition key="about-text" classNames="about-text" timeout={1000}>
-//         <div className='about-text'>{pElements}</div>
-//       </CSSTransition>
-//     </TransitionGroup>
-//     </div>
-//   );
-// }
-
 export default About;

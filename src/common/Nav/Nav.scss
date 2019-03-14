@@ -11,6 +11,15 @@
     z-index: 99;
 }
 
+.nav-appear, .nav-exit {
+    transform: translateY(-61px);
+}
+
+.nav-enter-done {
+    transform: translateY(0);
+    transition: transform 1s;
+}
+
 .nav__links {
     display: flex;
     justify-content: center;
@@ -48,20 +57,25 @@
     color: $red;
 }
 
-.nav__face {
+.nav__home-icon {
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
     bottom: 0;
     top: 0;
+    transition: $hover-transition;
 }
 
-.nav__face_highlighted {
+.nav__link:hover > .nav__home-icon {
     opacity: 0;
-    transition: opacity 0.2s ease-out;
 }
 
-.nav__face_highlighted:hover {
+.nav__home-icon_highlighted {
+    opacity: 0;
+    transition: $hover-transition;
+}
+
+.nav__link:hover > .nav__home-icon_highlighted {
     opacity: 1;
 }

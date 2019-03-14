@@ -22,14 +22,14 @@ class App extends Component {
       contactDescription: '',
       contactEmail: '',
       hoveredElementPos: null,
-      hasVisitedHome: false
+      hasFirstPageLoaded: false
     }
 
     this.musicSection = React.createRef();
   }
 
   componentDidMount() {
-    this.setState({isMounted: true});
+    this.setState({ isMounted: true });
     const apiEndpoint = 'https://stu-website.prismic.io/api/v2';
     Prismic.api(apiEndpoint)
       .then(api => {
@@ -80,15 +80,13 @@ class App extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
       this.setHoveredElementPos(null);
+      this.setState({ hasFirstPageLoaded: true });
     }
   }
 
-  visitHome() {
-    this.setState({hasVisitedHome: true});
-  }
 
   render() {
-    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasVisitedHome, isMounted } = this.state;
+    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded, isMounted } = this.state;
 
     if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
 
@@ -97,21 +95,27 @@ class App extends Component {
           // <CSSTransition key={location.key} appear={true} in={isMounted && location.pathname === '/' && !hasVisitedHome} classNames='app' timeout={2000}>
           <div className='app-container'>
 
-            <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos} onlyRedTriangles={false} />
-            <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos} onlyRedTriangles={false} />
+            {/* <CSSTransition appear={true} in={!hasFirstPageLoaded} key={location.key + 'tri1'} classNames="triangle-canvas" timeout={4500}> */}
+            <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos}
+              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'} />
+            {/* </CSSTransition> */}
+            {/* <CSSTransition appear={true} in={!hasFirstPageLoaded && location.pathname==='/'} key={location.key + 'tri2'} classNames="triangle-canvas" timeout={4500}> */}
+            <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos}
+              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'} />
+            {/* </CSSTransition> */}
 
-              <CSSTransition appear={true} in key={location.key} classNames="nav" timeout={3000}>
+
+            <TransitionGroup component={null}>
+              <CSSTransition appear={true} in key={location.key + 'nav'} classNames="nav" timeout={1000}>
                 <Nav route={this.props.location.pathname} />
               </CSSTransition>
-
-            <TransitionGroup className='transition-container'>
               <CSSTransition
-                key={location.key}
+                key={location.key + 'page'}
                 classNames="page"
                 timeout={500}>
                 <Switch location={location}>
-                  <Route exact path="/" render={(props) => <Home {...props} 
-                    setHoveredElementPos={pos => this.setHoveredElementPos(pos)} visitHome={() => this.visitHome()} />} />
+                  <Route exact path="/" render={(props) => <Home {...props}
+                    setHoveredElementPos={pos => this.setHoveredElementPos(pos)} hasFirstPageLoaded={hasFirstPageLoaded} />} />
                   <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
                   <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
                   <Route path="/contact" render={(props) => <Contact {...props} description={contactDescription} email={contactEmail} />} />
