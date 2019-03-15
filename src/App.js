@@ -7,7 +7,7 @@ import Home from './Home/Home';
 import About from './About/About';
 import Contact from './Contact/Contact';
 import Music from './Music/Music';
-import TriangleCanvas from './TriangleCanvas/TriangleCanvas';
+import TriangleCanvas from './common/TriangleCanvas/TriangleCanvas';
 import Nav from './Nav/Nav';
 
 class App extends Component {
@@ -22,7 +22,8 @@ class App extends Component {
       contactDescription: '',
       contactEmail: '',
       hoveredElementPos: null,
-      hasFirstPageLoaded: false
+      hasFirstPageLoaded: false,
+      isMobile: false
     }
 
     this.musicSection = React.createRef();
@@ -30,6 +31,9 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ isMounted: true });
+    if (window.innerWidth < 768) {
+      this.setState({ isMobile: true });
+    }
     const apiEndpoint = 'https://stu-website.prismic.io/api/v2';
     Prismic.api(apiEndpoint)
       .then(api => {
@@ -86,7 +90,7 @@ class App extends Component {
 
 
   render() {
-    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded } = this.state;
+    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded, isMobile } = this.state;
 
     if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
 
@@ -94,12 +98,17 @@ class App extends Component {
         <Route render={({ location }) => (
           <div className='app-container'>
 
-            <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos}
-              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
-              route={location.pathname} />
-            <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos}
-              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
-              route={location.pathname} />
+            {isMobile ? null : (
+              <div>
+                <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos}
+                  onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
+                  route={location.pathname} />
+                <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos}
+                  onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
+                  route={location.pathname} />
+              </div>
+            )}
+
 
             <TransitionGroup component={null}>
 

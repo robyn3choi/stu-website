@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Lottie from 'react-lottie';
 import * as animData from './data.json';
 import { CSSTransition } from 'react-transition-group';
-import TriangleCanvas from './../TriangleCanvas/TriangleCanvas';
+import TriangleCanvas from './../common/TriangleCanvas/TriangleCanvas';
 import TriangleLink from './../common/TriangleLink/TriangleLink';
 import './Contact.scss';
 

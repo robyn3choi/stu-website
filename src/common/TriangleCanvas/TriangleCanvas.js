@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Triangle from '../Home/Triangle';
+import Triangle from './Triangle';
 import './TriangleCanvas.scss';
 import { CSSTransition } from 'react-transition-group';
 

@@ -47,6 +47,10 @@
     transition: $page-transition;
 }
 
+.home-nav {
+    z-index: 2;
+}
+
 .home-nav-enter {
     opacity: 0;
 }

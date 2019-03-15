@@ -64,7 +64,7 @@
     right: 0;
     margin: auto;
     bottom: 0;
-    top: 0;
+    top: 4px;
     transition: $hover-transition;
 }
 
@@ -79,4 +79,15 @@
 
 .nav__link:hover > .nav__home-icon_highlighted {
     opacity: 1;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .nav__links {
+        width: 100%;
+    }
+
+    .nav__link-container {
+        text-align: center;
+        width: 33%;
+    }
 }
