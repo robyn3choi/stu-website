@@ -21,12 +21,18 @@ export default class Triangle {
 
       if (highlight) {
         const random = 0.6+0.8*Math.random();
-        this.color = `${Math.floor(random*50)},${Math.floor(random*15)},${Math.floor(random*19)}`;
+        this.r = Math.floor(random*50);
+        this.g = Math.floor(random*15);
+        this.b = Math.floor(random*19);
+        //this.color = `${Math.floor(random*50)},${Math.floor(random*15)},${Math.floor(random*19)}`;
         this.alpha = 0;
       }
       else {
-        const random = 20+40*Math.random();
-        this.color = `${Math.floor(random)},${Math.floor(random)},${Math.floor(random*1.2)}`;
+        const random = Math.floor(15+45*Math.random());
+        this.r = random;
+        this.g = random;
+        this.b = random;
+        //this.color = `${Math.floor(random)},${Math.floor(random)},${Math.floor(random*1.2)}`;
         this.alpha = 1;
       }
     }

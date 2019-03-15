@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200|Source+Sans+Pro:400,300|Assistant:200,300|Work+Sans:200,300,400|Open+Sans:300,400|Josefin+Sans:300,100');
+@import url('https://fonts.googleapis.com/css?family=Assistant:300|Josefin+Sans:300,100');
 @import './Variables.scss';
 
 html {
-  //height: 100%;
-  background-color: $black !important;
+  background-color: $stu-face !important;
 }
 
 #root {
@@ -15,13 +14,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
-  background-color: $black;
- // background: radial-gradient(circle, $background 10%, $black 70%);
+  background-color: $stu-face;
   color: $white;
 }
 
 p {
- // font-family: 'Assistant', Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 1.2em;
   letter-spacing: 0.2px;

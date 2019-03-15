@@ -8,7 +8,7 @@ import About from './About/About';
 import Contact from './Contact/Contact';
 import Music from './Music/Music';
 import TriangleCanvas from './TriangleCanvas/TriangleCanvas';
-import Nav from './common/Nav/Nav';
+import Nav from './Nav/Nav';
 
 class App extends Component {
 
@@ -86,29 +86,27 @@ class App extends Component {
 
 
   render() {
-    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded, isMounted } = this.state;
+    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded } = this.state;
 
     if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
 
       return (
         <Route render={({ location }) => (
-          // <CSSTransition key={location.key} appear={true} in={isMounted && location.pathname === '/' && !hasVisitedHome} classNames='app' timeout={2000}>
           <div className='app-container'>
 
-            {/* <CSSTransition appear={true} in={!hasFirstPageLoaded} key={location.key + 'tri1'} classNames="triangle-canvas" timeout={4500}> */}
             <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos}
-              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'} />
-            {/* </CSSTransition> */}
-            {/* <CSSTransition appear={true} in={!hasFirstPageLoaded && location.pathname==='/'} key={location.key + 'tri2'} classNames="triangle-canvas" timeout={4500}> */}
+              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
+              route={location.pathname} />
             <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos}
-              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'} />
-            {/* </CSSTransition> */}
-
+              onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
+              route={location.pathname} />
 
             <TransitionGroup component={null}>
+
               <CSSTransition appear={true} in key={location.key + 'nav'} classNames="nav" timeout={1000}>
                 <Nav route={this.props.location.pathname} />
               </CSSTransition>
+
               <CSSTransition
                 key={location.key + 'page'}
                 classNames="page"
@@ -123,7 +121,6 @@ class App extends Component {
               </CSSTransition>
             </TransitionGroup>
           </div>
-          // </CSSTransition>
         )} />
       )
     }

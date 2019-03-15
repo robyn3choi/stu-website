@@ -5,11 +5,8 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'react-app-polyfill/ie9';
-import smoothscroll from 'smoothscroll-polyfill';
 import 'polyfill-array-includes';
 import {BrowserRouter} from 'react-router-dom';
-
-smoothscroll.polyfill();
 
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
 

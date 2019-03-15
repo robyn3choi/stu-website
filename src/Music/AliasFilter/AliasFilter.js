@@ -21,15 +21,4 @@ class AliasFilterButton extends Component {
   }
 }
 
-// const AliasFilterButton = (props) => {
-//   return (
-//     <CSSTransition in={true} classNames="alias-filter" timeout={props.index*120}>
-//     <button className={`alias-filter ${props.isSelected ? 'alias-filter__selected' : null}`} 
-//       onClick={() => props.filterByAlias(props.alias)}>
-//       {props.alias ? props.alias : 'All'}
-//     </button>
-//     </CSSTransition>
-//   );
-// }
-
 export default AliasFilterButton;

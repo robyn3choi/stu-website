@@ -45,9 +45,17 @@ class TriangleCanvas extends Component {
   }
 
   animate() {
-    //this.ctx.clearRect(0,0,this.canvasRef.current.width,this.canvasRef.current.height);
-    this.ctx.canvas.width = window.innerWidth;
-    this.ctx.canvas.height = window.innerHeight;
+  
+    if (this.ctx.canvas.width !== window.innerWidth) {
+      this.ctx.canvas.width = window.innerWidth;
+    }
+    else if (this.ctx.canvas.height !== window.innerHeight) {
+      this.ctx.canvas.height = window.innerHeight;
+    }
+    else {
+      this.ctx.clearRect(0,0,this.ctx.canvas.width,this.ctx.canvas.height);
+    }
+
     for (const triangle of this.triangles) {
       this.drawTriangle(triangle);
     }
@@ -70,7 +78,8 @@ class TriangleCanvas extends Component {
     this.ctx.lineTo(triangle.coords[1].x + triangle.x, triangle.coords[1].y + triangle.y);
     this.ctx.lineTo(triangle.coords[2].x + triangle.x, triangle.coords[2].y + triangle.y);
     this.ctx.closePath();
-    this.ctx.fillStyle = 'rgba(' + triangle.color + ',' + triangle.alpha + ')';
+    //this.ctx.fillStyle = 'rgba(' + triangle.color + ',' + triangle.alpha + ')';
+    this.ctx.fillStyle = 'rgba(' + triangle.r + ',' + triangle.g + ',' + triangle.b + ',' + triangle.alpha + ')';
     this.ctx.fill();
     this.ctx.restore();
   }
@@ -116,6 +125,22 @@ class TriangleCanvas extends Component {
       });
   }
 
+  colorChangeTween(tri) {
+    let random;
+    if (tri.r > 37) {
+      random = 15 + 25*Math.random();
+    }
+    else {
+      random = 33+27*Math.random();
+    }
+    window.TweenMax.to(tri, 0.7,
+      {
+        r: Math.floor(random),
+        g: Math.floor(random),
+        b: Math.floor(random),
+      });
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps === this.props) return;
 
@@ -137,12 +162,18 @@ class TriangleCanvas extends Component {
         this.highlightFadeOutTween(tri);
       }
     }
+
+    if (prevProps.route !== this.props.route) {
+      for (const tri of this.triangles) {
+        this.colorChangeTween(tri);
+      }
+    }
   }
 
 
   render() {
     return (
-      <CSSTransition appear={true} in={this.props.shouldPlayIntro} classNames="triangle-canvas" timeout={4500}>
+      <CSSTransition appear={true} in={this.props.shouldPlayIntro} classNames="triangle-canvas" timeout={5800}>
         <canvas className={`triangle-canvas triangle-canvas_${this.props.position}`} ref={this.canvasRef} />
       </CSSTransition>
     );

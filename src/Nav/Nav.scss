@@ -1,4 +1,4 @@
-@import '../../Variables.scss';
+@import './../Variables.scss';
 
 .nav {
     position: fixed;
@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     z-index: 99;
+    box-shadow: -1px 1px #1a1e25;
 }
 
 .nav-appear, .nav-exit {
