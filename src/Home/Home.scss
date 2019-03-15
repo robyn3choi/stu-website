@@ -56,3 +56,36 @@
     transition: $page-transition;
 }
 
+@media (min-width: 320px) {
+    .home__title {
+        width: 95%;
+    }
+
+    .home__face {
+        //left: 60px;
+        width: 85%;
+    }
+
+    .home-nav {
+        position: absolute;
+        bottom: 26px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .home__title {
+        width: 700px;
+    }
+
+    .home__face {
+        //left: 60px;
+        width: 400px;
+    }
+
+    .home-nav {
+        position: static;
+        bottom: 0;
+        width: auto;
+    }
+}

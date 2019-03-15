@@ -62,11 +62,6 @@
   position: relative;
 }
 
-.page-heading {
-  width: 400px;
-  margin: 0 auto 20px auto;
-}
-
 .fade-enter {
   transform: translateY(30px);
   opacity: 0;
@@ -76,4 +71,17 @@
   transform: translateY(0);
   opacity: 1;
   transition: all 0.8s;
+}
+
+@media(min-width: 320px) {
+  .page-heading {
+    width: 100%;
+  }
+}
+
+@media(min-width: 768px) {
+  .page-heading {
+    width: 400px;
+    margin: 0 auto 20px auto;
+  }
 }

@@ -1,11 +1,26 @@
-.about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
+@media(min-width: 320px) {
+    .about {
+        display: block;
+        margin-top: 80px;
+    }
+    
+    .about-text {
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
-.about-text {
-    width: 50%;
+@media(min-width: 768px) {
+    .about {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 0;
+    }
+    
+    .about-text {
+        width: 50%;
+    }
 }
-

@@ -1,0 +1,67 @@
+@import '../../Variables.scss';
+
+.triangle-link-container {
+    z-index: 3;
+    position: absolute;
+    text-align: center;
+}
+
+.triangle-link-container.triangle-link-container_contact-email {
+    position: relative;
+    margin-top: 30px;
+
+    .triangle-link {
+        text-transform: none;
+    }
+}
+
+.triangle-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $white;
+    font-family: 'Josefin Sans';
+    font-weight: 300;
+    font-size: 1.5em;
+    letter-spacing: 0.06em;
+}
+
+@media (min-width: 320px) {
+    .triangle-link-container {
+        position: relative;
+        margin: 10px auto;
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .triangle-link-container {
+        position: absolute;
+        margin: 0;
+        width: auto;
+    }
+
+    .triangle-link-container_about {
+        left: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto auto auto 8%;
+        height: 1.1em;
+    }
+    
+    .triangle-link-container_music {
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: auto auto 4% auto;
+        width: 70px;
+    }
+    
+    .triangle-link-container_contact {
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto 8% auto auto;
+        height: 1.1em;
+    }
+}

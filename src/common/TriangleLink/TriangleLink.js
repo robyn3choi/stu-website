@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
-import './HomeNavLink.scss';
+import './TriangleLink.scss';
 import { Link } from 'react-router-dom';
 
-class HomeNavLink extends Component {
+class TriangleLink extends Component {
   
   constructor(props) {
     super(props);
-    this.navLinkRef = React.createRef();
+    this.linkRef = React.createRef();
   }
 
   onNavMouseEnter() {
-    const rect = this.navLinkRef.current.getBoundingClientRect();
+    const rect = this.linkRef.current.getBoundingClientRect();
     const offset = (this.props.isContactEmail ? 3 : 4);
     this.props.setHoveredElementPos({ x: rect.left + (rect.width / offset), y: rect.top - (rect.height / 2) });
   }
@@ -25,12 +25,12 @@ class HomeNavLink extends Component {
 
   render() {
     return (
-      <div className={`home-nav__link-container home-nav__link-container_${this.props.isContactEmail ? 'contact-email' : this.props.text}`} 
-        ref={this.navLinkRef}
+      <div className={`triangle-link-container triangle-link-container_${this.props.isContactEmail ? 'contact-email' : this.props.text}`} 
+        ref={this.linkRef}
         onMouseEnter={() => this.onNavMouseEnter()} 
         onMouseLeave={() => this.onNavMouseLeave()} >
   
-        <Link to={this.props.path} className='home-nav__link'>
+        <Link to={this.props.path} className='triangle-link'>
           {this.props.text}
         </Link>
   
@@ -40,4 +40,4 @@ class HomeNavLink extends Component {
 }
 
 
-export default HomeNavLink;
+export default TriangleLink;

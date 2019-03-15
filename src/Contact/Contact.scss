@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .contact__email {
@@ -15,3 +16,12 @@
     font-weight: 100;
     font-size: 1.7em;
 }
+
+
+@media(min-width: 320px) {
+    .contact__description {
+        width: 80%;
+    }
+}
+
+

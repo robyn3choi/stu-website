@@ -33,3 +33,16 @@ button {
   font: inherit;
   cursor: pointer;
 }
+
+
+@media (min-width: 320px) {
+  body {
+    font-size: 85%;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 100%;
+  }
+}

@@ -3,7 +3,7 @@ import Lottie from 'react-lottie';
 import * as animData from './data.json';
 import { CSSTransition } from 'react-transition-group';
 import TriangleCanvas from './../TriangleCanvas/TriangleCanvas';
-import HomeNavLink from './../Home/HomeNavLink/HomeNavLink';
+import TriangleLink from './../common/TriangleLink/TriangleLink';
 import './Contact.scss';
 
 class Contact extends Component {
@@ -41,12 +41,9 @@ class Contact extends Component {
           </p>
         </CSSTransition>
         <CSSTransition in={this.state.isMounted} classNames="fade" timeout={660}>
-          <HomeNavLink text={this.props.email} path={`mailto:${this.props.email}`}
+          <TriangleLink text={this.props.email} path={`mailto:${this.props.email}`}
             setHoveredElementPos={pos => this.setState({ hoveredElementPos: pos })} 
             isContactEmail={true} />
-          {/* <a href={`mailto:${this.props.email}`} className='contact__email'>
-            {this.props.email}
-          </a> */}
         </CSSTransition>
       </div>
     );
