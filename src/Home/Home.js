@@ -13,7 +13,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.setState({ isMounted: true });
-    setTimeout(() => this.setState({hasDelayed: true}), 200);
+    setTimeout(() => this.setState({hasDelayed: true}), 600);
   }
 
   setHoveredElementPos(hoveredElementPos) {
