@@ -29,7 +29,9 @@ class Contact extends Component {
     };
     return (
       <div className='contact non-home-section'>
-        <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos} onlyHighlightTriangles={true} />
+        {this.props.isMobile ? null :
+          <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos} onlyHighlightTriangles={true} />
+        }
         <CSSTransition in={this.state.isMounted} classNames="fade" timeout={500}>
           <div className='page-heading'>
             <Lottie options={defaultOptions} isStopped={!this.state.isTransitionDone} />
@@ -42,7 +44,7 @@ class Contact extends Component {
         </CSSTransition>
         <CSSTransition in={this.state.isMounted} classNames="fade" timeout={660}>
           <TriangleLink text={this.props.email} path={`mailto:${this.props.email}`}
-            setHoveredElementPos={pos => this.setState({ hoveredElementPos: pos })} 
+            setHoveredElementPos={pos => this.setState({ hoveredElementPos: pos })}
             isContactEmail={true} />
         </CSSTransition>
       </div>

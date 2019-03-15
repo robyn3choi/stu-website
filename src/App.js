@@ -125,7 +125,7 @@ class App extends Component {
                     setHoveredElementPos={pos => this.setHoveredElementPos(pos)} hasFirstPageLoaded={hasFirstPageLoaded} />} />
                   <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
                   <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
-                  <Route path="/contact" render={(props) => <Contact {...props} description={contactDescription} email={contactEmail} />} />
+                  <Route path="/contact" render={(props) => <Contact {...props} description={contactDescription} email={contactEmail} isMobile={isMobile} />} />
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
