@@ -9,6 +9,7 @@ import Contact from './Contact/Contact';
 import Music from './Music/Music';
 import TriangleCanvas from './common/TriangleCanvas/TriangleCanvas';
 import Nav from './Nav/Nav';
+import {detect} from 'detect-browser';
 
 class App extends Component {
 
@@ -23,14 +24,15 @@ class App extends Component {
       contactEmail: '',
       hoveredElementPos: null,
       hasFirstPageLoaded: false,
-      isMobile: false
+      isMobile: false,
+      browser: ''
     }
-
-    this.musicSection = React.createRef();
   }
 
   componentDidMount() {
     this.setState({ isMounted: true });
+    const browser = detect();
+    this.setState({browser: browser.name});
     if (window.innerWidth < 768) {
       this.setState({ isMobile: true });
     }
@@ -90,25 +92,24 @@ class App extends Component {
 
 
   render() {
-    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded, isMobile } = this.state;
+    const { aboutParagraphs, musicItems, contactDescription, contactEmail, hasFirstPageLoaded, isMobile, browser } = this.state;
 
     if (aboutParagraphs.length > 0 && musicItems.length > 0 && contactEmail.length > 0) {
 
       return (
         <Route render={({ location }) => (
-          <div className='app-container'>
+          <div className={`app-container ${browser}`}>
 
             {isMobile ? null : (
               <div>
                 <TriangleCanvas position='back' hoveredElementPos={this.state.hoveredElementPos}
                   onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
-                  route={location.pathname} />
+                  route={location.pathname} browser={browser} />
                 <TriangleCanvas position='front' hoveredElementPos={this.state.hoveredElementPos}
                   onlyRedTriangles={false} shouldPlayIntro={!hasFirstPageLoaded && location.pathname === '/'}
-                  route={location.pathname} />
+                  route={location.pathname} browser={browser} />
               </div>
             )}
-
 
             <TransitionGroup component={null}>
 
@@ -122,7 +123,7 @@ class App extends Component {
                 timeout={500}>
                 <Switch location={location}>
                   <Route exact path="/" render={(props) => <Home {...props}
-                    setHoveredElementPos={pos => this.setHoveredElementPos(pos)} hasFirstPageLoaded={hasFirstPageLoaded} />} />
+                    setHoveredElementPos={pos => this.setHoveredElementPos(pos)} hasFirstPageLoaded={hasFirstPageLoaded} browser={browser} />} />
                   <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
                   <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
                   <Route path="/contact" render={(props) => <Contact {...props} description={contactDescription} email={contactEmail} isMobile={isMobile} />} />

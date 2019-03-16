@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './TriangleLink.scss';
 import { Link } from 'react-router-dom';
 
 class TriangleLink extends Component {
-  
+
   constructor(props) {
     super(props);
     this.linkRef = React.createRef();
@@ -25,15 +25,22 @@ class TriangleLink extends Component {
 
   render() {
     return (
-      <div className={`triangle-link-container triangle-link-container_${this.props.isContactEmail ? 'contact-email' : this.props.text}`} 
+      <div className={`triangle-link-container triangle-link-container_${this.props.isContactEmail ? 'contact-email' : this.props.text}`}
         ref={this.linkRef}
-        onMouseEnter={() => this.onNavMouseEnter()} 
+        onMouseEnter={() => this.onNavMouseEnter()}
         onMouseLeave={() => this.onNavMouseLeave()} >
-  
-        <Link to={this.props.path} className='triangle-link'>
-          {this.props.text}
-        </Link>
-  
+
+        {this.props.isContactEmail ?
+          <a href={`mailto:${this.props.text}`} className='triangle-link' target="_blank" rel="noopener noreferrer">
+            {this.props.text}
+          </a>
+          :
+          <Link to={this.props.path} className='triangle-link'>
+            {this.props.text}
+          </Link>
+        }
+
+
       </div>
     );
   }

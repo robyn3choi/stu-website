@@ -30,7 +30,8 @@ class Home extends Component {
       }
     };
 
-    const shouldFadeIn = this.state.isMounted && !this.props.hasFirstPageLoaded;
+    const isBrokenBrowser = this.props.browser === 'edge' || this.props.browser === 'ie';
+    const shouldFadeIn = this.state.isMounted && !this.props.hasFirstPageLoaded && !isBrokenBrowser;
 
     return (
       <CSSTransition in={shouldFadeIn} classNames="home" timeout={4500}>

@@ -163,7 +163,7 @@ class TriangleCanvas extends Component {
       }
     }
 
-    if (prevProps.route !== this.props.route) {
+    if (prevProps.route !== this.props.route && this.props.browser !== 'ie') {
       for (const tri of this.triangles) {
         this.colorChangeTween(tri);
       }

@@ -73,17 +73,16 @@
   transition: all 0.8s;
 }
 
+.ie .page-heading {
+  height: 92px;
+}
+
 @media(min-width: 320px) {
   .page-heading {
     width: 85%;
     max-width: 350px;
     margin: 0 auto 10px auto;
   }
-
-  // .music > .page-heading {
-  //   max-width: 400px;
-  //   width: 400px;
-  // }
 }
 
 @media(min-width: 768px) {
@@ -91,9 +90,4 @@
     width: 350px;
     margin: 0 auto 20px auto;
   }
-
-  // .music > .page-heading {
-  //   max-width: 400px;
-  //   width: 400px;
-  // }
 }

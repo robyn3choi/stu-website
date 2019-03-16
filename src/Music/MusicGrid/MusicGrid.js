@@ -3,18 +3,30 @@ import './MusicGrid.scss';
 import Shuffle from 'shufflejs';
 
 class MusicGrid extends Component {
-  
+
   constructor(props) {
     super(props);
+    this.state = {
+      leftOffset: "0px"
+    }
     this.grid = React.createRef();
   }
 
   componentDidMount() {
     // The elements are in the DOM, initialize a shuffle instance.
-    this.shuffle = new Shuffle(this.grid.current, {itemSelector: '.music-item'});
+    this.shuffle = new Shuffle(this.grid.current, { itemSelector: '.music-item' });
+    this.centerGrid();
   }
 
-  shouldComponentUpdate(nextProps) {
+  centerGrid() {
+    const gridWidth = 256 * this.shuffle.cols;
+    const spaceNeededOnEachSide = (window.innerWidth - gridWidth) / 2;
+    const currentMarginLeft = 0.1 * window.innerWidth;
+    const remainingSpaceNeededOnLeft = spaceNeededOnEachSide - currentMarginLeft;
+    this.setState({ leftOffset: remainingSpaceNeededOnLeft.toString() + 'px' });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
     // we shouldn't rerender after we have all the music items, because it prevent the shuffle filter from animating
     if (nextProps.musicItemComponents.length === this.props.musicItemComponents.length) {
       return false;
@@ -39,9 +51,11 @@ class MusicGrid extends Component {
   }
 
   render() {
-    return(
-      <div ref={this.grid} className="music-grid row my-shuffle">
-        {this.props.musicItemComponents}
+    return (
+      <div style={{ marginLeft: `${this.state.leftOffset}` }}>
+        <div ref={this.grid} className="music-grid row my-shuffle">
+          {this.props.musicItemComponents}
+        </div>
       </div>
     );
   }

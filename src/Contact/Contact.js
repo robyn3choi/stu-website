@@ -43,8 +43,7 @@ class Contact extends Component {
           </p>
         </CSSTransition>
         <CSSTransition in={this.state.isMounted} classNames="fade" timeout={660}>
-          <TriangleLink text={this.props.email} path={`mailto:${this.props.email}`}
-            setHoveredElementPos={pos => this.setState({ hoveredElementPos: pos })}
+          <TriangleLink text={this.props.email} setHoveredElementPos={pos => this.setState({ hoveredElementPos: pos })}
             isContactEmail={true} />
         </CSSTransition>
       </div>
