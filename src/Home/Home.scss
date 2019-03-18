@@ -7,7 +7,8 @@
 }
 
 .home__face {
-    width: 400px;
+    width: 75%;
+    max-width: 400px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -18,7 +19,8 @@
 }
 
 .home__title {
-    width: 700px;
+    width: 75%;
+    max-width: 700px;
     position: absolute;
     top: 0;
     left:0;
@@ -61,35 +63,27 @@
     transition: $page-transition;
 }
 
-@media (min-width: 320px) {
+@media (min-width: 320px)  and (max-width: 767px) {
     .home__title {
         width: 95%;
+        max-width: 600px;
     }
 
     .home__face {
         //left: 60px;
         width: 85%;
+        max-width: 500px;
     }
 
     .home-nav {
         position: absolute;
-        bottom: 6px;
+        bottom: 5%;
         width: 100%;
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px)  and (max-width: 1115px) {
     .home__title {
-        width: 700px;
-    }
-
-    .home__face {
-        width: 400px;
-    }
-
-    .home-nav {
-        position: static;
-        bottom: 0;
-        width: auto;
+        width: 65%;
     }
 }
