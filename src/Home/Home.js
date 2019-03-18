@@ -13,7 +13,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.setState({ isMounted: true });
-    setTimeout(() => this.setState({hasDelayed: true}), 600);
+    setTimeout(() => this.setState({hasDelayed: true}), 1200);
   }
 
   setHoveredElementPos(hoveredElementPos) {
@@ -34,9 +34,9 @@ class Home extends Component {
     const shouldFadeIn = this.state.isMounted && !this.props.hasFirstPageLoaded && !isBrokenBrowser;
 
     return (
-      <CSSTransition in={shouldFadeIn} classNames="home" timeout={4500}>
+      <CSSTransition in={shouldFadeIn} classNames="home" timeout={600}>
         <div className='home'>
-          <CSSTransition in={shouldFadeIn} classNames="home-nav" timeout={5800}>
+          <CSSTransition in={shouldFadeIn} classNames="home-nav" timeout={400}>
             <div className='home-nav'>
               <TriangleLink text='about' path='/about' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />
               <TriangleLink text='music' path='/music' setHoveredElementPos={pos => this.setHoveredElementPos(pos)} />

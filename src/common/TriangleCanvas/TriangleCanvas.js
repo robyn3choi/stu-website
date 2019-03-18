@@ -173,7 +173,7 @@ class TriangleCanvas extends Component {
 
   render() {
     return (
-      <CSSTransition appear={true} in={this.props.shouldPlayIntro} classNames="triangle-canvas" timeout={5800}>
+      <CSSTransition appear={true} in={this.props.shouldPlayIntro} classNames="triangle-canvas" timeout={800}>
         <canvas className={`triangle-canvas triangle-canvas_${this.props.position}`} ref={this.canvasRef} />
       </CSSTransition>
     );
