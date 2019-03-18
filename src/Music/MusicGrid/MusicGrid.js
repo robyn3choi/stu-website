@@ -19,16 +19,24 @@ class MusicGrid extends Component {
   }
 
   centerGrid() {
+    console.log(this.shuffle.cols)
     const gridWidth = 256 * this.shuffle.cols;
+    console.log(gridWidth)
     const spaceNeededOnEachSide = (window.innerWidth - gridWidth) / 2;
+    console.log(spaceNeededOnEachSide)
     const currentMarginLeft = 0.1 * window.innerWidth;
+    console.log(currentMarginLeft)
     const remainingSpaceNeededOnLeft = spaceNeededOnEachSide - currentMarginLeft;
+    console.log(remainingSpaceNeededOnLeft)
     this.setState({ leftOffset: remainingSpaceNeededOnLeft.toString() + 'px' });
+    console.log(remainingSpaceNeededOnLeft.toString())
+    console.log(this.state.leftOffset)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     // we shouldn't rerender after we have all the music items, because it prevent the shuffle filter from animating
-    if (nextProps.musicItemComponents.length === this.props.musicItemComponents.length) {
+    if (nextProps.musicItemComponents.length === this.props.musicItemComponents.length
+      && this.state.leftOffset === nextState.leftOffset) {
       return false;
     }
     return true;
