@@ -7,7 +7,12 @@
     
     .about-text {
         width: 80%;
+        max-width: 680px;
         margin: 0 auto;
+
+        p {
+            margin-bottom: 0.7em;
+        }
     }
 }
 

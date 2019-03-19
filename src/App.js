@@ -9,7 +9,7 @@ import Contact from './Contact/Contact';
 import Music from './Music/Music';
 import TriangleCanvas from './common/TriangleCanvas/TriangleCanvas';
 import Nav from './Nav/Nav';
-import {detect} from 'detect-browser';
+import { detect } from 'detect-browser';
 
 class App extends Component {
 
@@ -32,7 +32,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({ isMounted: true });
     const browser = detect();
-    this.setState({browser: browser.name});
+    this.setState({ browser: browser.name });
     if (window.innerWidth < 768) {
       this.setState({ isMobile: true });
     }
@@ -127,6 +127,8 @@ class App extends Component {
                   <Route path="/about" render={(props) => <About {...props} paragraphs={aboutParagraphs} />} />
                   <Route path="/music" render={(props) => <Music {...props} musicItems={musicItems} />} />
                   <Route path="/contact" render={(props) => <Contact {...props} description={contactDescription} email={contactEmail} isMobile={isMobile} />} />
+                  <Route path="*" render={(props) => <Home {...props}
+                    setHoveredElementPos={pos => this.setHoveredElementPos(pos)} hasFirstPageLoaded={hasFirstPageLoaded} browser={browser} />} />
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
