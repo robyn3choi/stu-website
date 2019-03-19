@@ -9,6 +9,7 @@ import Contact from './Contact/Contact';
 import Music from './Music/Music';
 import TriangleCanvas from './common/TriangleCanvas/TriangleCanvas';
 import Nav from './Nav/Nav';
+import Loading from './Loading/Loading';
 import { detect } from 'detect-browser';
 
 class App extends Component {
@@ -138,7 +139,7 @@ class App extends Component {
     }
     else {
       return (
-        <div>loading...</div>
+        <Loading />
       )
     }
   }

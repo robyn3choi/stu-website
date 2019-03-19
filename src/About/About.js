@@ -12,7 +12,11 @@ class About extends Component {
 
   componentDidMount() {
     this.setState({ isMounted: true });
-    setTimeout(() => this.setState({isTransitionDone: true}), 1000);
+    this.timeout = setTimeout(() => this.setState({isTransitionDone: true}), 1000);
+  }
+  
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
   }
 
   render() {
