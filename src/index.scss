@@ -17,6 +17,7 @@ body {
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   background-color: $stu-face;
   color: $white;
+  font-size: 100%;
 }
 
 p {
@@ -36,14 +37,8 @@ button {
 }
 
 
-@media (min-width: 320px) {
+@media (max-width: 767px) {
   body {
     font-size: 85%;
-  }
-}
-
-@media (min-width: 768px) {
-  body {
-    font-size: 100%;
   }
 }

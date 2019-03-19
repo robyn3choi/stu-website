@@ -77,12 +77,10 @@
   height: 92px;
 }
 
-@media(min-width: 320px) {
-  .page-heading {
-    width: 85%;
-    max-width: 350px;
-    margin: 0 auto 10px auto;
-  }
+.page-heading {
+  width: 85%;
+  max-width: 350px;
+  margin: 0 auto 10px auto;
 }
 
 @media(min-width: 768px) {

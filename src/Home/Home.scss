@@ -63,7 +63,7 @@
     transition: $page-transition;
 }
 
-@media (min-width: 320px)  and (max-width: 767px) {
+@media (max-width: 767px) {
     .home__title {
         width: 95%;
         max-width: 600px;

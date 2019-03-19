@@ -1,18 +1,16 @@
 
-@media(min-width: 320px) {
-    .about {
-        display: block;
-        margin-top: 80px;
-    }
-    
-    .about-text {
-        width: 80%;
-        max-width: 680px;
-        margin: 0 auto;
+.about {
+    display: block;
+    margin-top: 80px;
+}
 
-        p {
-            margin-bottom: 0.7em;
-        }
+.about-text {
+    width: 80%;
+    max-width: 680px;
+    margin: 0 auto;
+
+    p {
+        margin-bottom: 0.7em;
     }
 }
 
