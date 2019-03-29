@@ -17,11 +17,11 @@
 
 .triangle-link {
     text-decoration: none;
-    text-transform: uppercase;
+    text-transform: capitalize;
     color: $white;
     font-family: 'Josefin Sans';
-    font-weight: 300;
-    font-size: 1.5em;
+    font-weight: 200;
+    font-size: 1.8em;
     letter-spacing: 0.06em;
 }
 
@@ -44,8 +44,8 @@
     .triangle-link-container_about {
         left: 0;
         bottom: 0;
-        top: 0;
-        margin: auto auto auto 8%;
+        //top: 0;
+        margin: auto auto 4% 20%;
         height: 1.1em;
     }
     
@@ -55,13 +55,14 @@
         bottom: 0;
         margin: auto auto 4% auto;
         width: 70px;
+        height: 1.1em;
     }
     
     .triangle-link-container_contact {
         right: 0;
         bottom: 0;
-        top: 0;
-        margin: auto 8% auto auto;
+        //top: 0;
+        margin: auto 20% 4% auto;
         height: 1.1em;
     }
 }

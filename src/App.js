@@ -76,10 +76,6 @@ class App extends Component {
       });
   }
 
-  setRoute(route) {
-    this.setState({ route: route });
-  }
-
   setHoveredElementPos(pos) {
     this.setState({ hoveredElementPos: pos });
   }
@@ -133,6 +129,7 @@ class App extends Component {
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
+            <div className='copyright'>&copy; 2019 Stuart Brookes</div>
           </div>
         )} />
       )
