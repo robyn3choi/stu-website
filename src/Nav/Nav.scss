@@ -47,10 +47,11 @@
 .nav__link {
     text-decoration: none;
     color: $white;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-family: 'Josefin Sans';
     letter-spacing: 0.06em;
     font-weight: 300;
+    font-size: 1.1em;
     transition: color 0.2s ease-out;
 }
 

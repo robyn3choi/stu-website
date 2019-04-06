@@ -13,6 +13,7 @@
     "polyfill-array-includes": "^1.0.0",
     "prismic-javascript": "^2.0.1",
     "prismic-reactjs": "^0.3.2",
+    "prop-types": "^15.7.2",
     "react": "^16.6.3",
     "react-app-polyfill": "^0.2.1",
     "react-dom": "^16.6.3",
