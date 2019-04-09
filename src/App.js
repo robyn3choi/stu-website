@@ -11,6 +11,7 @@ import TriangleCanvas from './common/TriangleCanvas/TriangleCanvas';
 import Nav from './Nav/Nav';
 import Loading from './Loading/Loading';
 import { detect } from 'detect-browser';
+import Copyright from './Copyright/Copyright';
 
 class App extends Component {
 
@@ -129,7 +130,7 @@ class App extends Component {
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
-            <div className='copyright'>&copy; 2019 Stuart Brookes</div>
+            { this.props.location.pathname==='/music' ? null : <Copyright />}
           </div>
         )} />
       )
