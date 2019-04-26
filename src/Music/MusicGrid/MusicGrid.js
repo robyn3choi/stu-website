@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './MusicGrid.scss';
 import Shuffle from 'shufflejs';
-import Copyright from './../../Copyright/Copyright';
 
 class MusicGrid extends Component {
 
