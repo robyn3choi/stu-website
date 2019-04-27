@@ -27,7 +27,7 @@ class MusicItem extends Component {
       icons.push(<MusicItemIcon className={null} url={this.props.soundcloud} platform='soundcloud' key='3' />);
     }
     if (this.props.youtube) {
-      icons.push(<MusicItemIcon className={null} url={this.props.youtube} platform='youtube' key='2' />);
+      icons.push(<MusicItemIcon className={null} url={this.props.youtube} platform='yt' key='2' />);
     }
     this.setState({ icons: icons });
   }
